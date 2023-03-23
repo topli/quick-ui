@@ -1,0 +1,182 @@
+<template>
+  <div class="qk-select">
+    <el-select
+      v-model="selectValue"
+      :loading="loading"
+      :remote-method="remoteMethod"
+      :filterable="filterable"
+      :clearable="clearable"
+      :multiple="multiple"
+      :disabled="disabled"
+      :collapse-tags="multiple"
+      v-bind="$attrs"
+      remote
+      reserve-keyword
+      @focus="selectFocus"
+      @change="selectChange">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"/>
+    </el-select>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  props: {
+    // 查询数据类型
+    value: {
+      type: [Object, String, Number, Array, Boolean],
+      default: function() {}
+    },
+    dataType: {
+      type: String,
+      default: ''
+    },
+    filterable: {
+      type: Boolean,
+      default: false
+    },
+    clearable: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    remote: {
+      type: Boolean,
+      default: false
+    },
+    remoteQuery: {
+      type: Function,
+      default: () => {
+        return () => {}
+      }
+    },
+    propsDefalut: {
+      type: Object,
+      default: () => {
+        return { value: 'value', label: 'label' }
+      }
+    },
+    setOptions: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    }
+  },
+  data() {
+    return {
+      options: [],
+      selectValue: null,
+      loading: false
+    }
+  },
+  computed: {
+    ...mapGetters(['dicts'])
+  },
+  watch: {
+    selectValue: function(val) {
+      this.$emit('input', val)
+    },
+    dicts: {
+      deep: true,
+      handler: function(val) {
+        this.getOptions()
+      }
+    },
+    value: function(val) {
+      this.selectValue = val
+    }
+    // setOptions: function(val) {
+    //   console.log('监听选项', val)
+    //   this.options = val
+    // }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.initData()
+    })
+  },
+  methods: {
+    initData() {
+      if (!this.remote) {
+        this.getOptions()
+      } else {
+        this.remoteMethod('')
+      }
+      if (this.multiple) {
+        let value = []
+        if (this.value) {
+          if (typeof this.value === 'string') {
+            value = this.value.split(',')
+          } else {
+            value = this.value
+          }
+        } else {
+          value = []
+        }
+        this.selectValue = value || null
+      } else {
+        this.selectValue = this.value ? this.value : null
+      }
+    },
+    getOptions() {
+      let data = []
+      // 本地数据中查询字典值
+      if (this.dicts && this.dicts[this.dataType]) {
+        data = this.dicts[this.dataType]
+      }
+      this.options = data
+    },
+    remoteMethod(query) {
+      this.loading = true
+      setTimeout(() => {
+        if (typeof query !== 'string') {
+          query = ''
+        }
+        this.remoteQuery(query).then((data) => {
+          this.loading = false
+          if (data) {
+            this.options = data.map(item => {
+              return {
+                value: item[this.propsDefalut.value],
+                label: item[this.propsDefalut.label]
+              }
+            })
+          } else {
+            this.options = []
+          }
+        }).catch(() => {
+          this.loading = false
+          this.options = []
+        })
+      }, 20)
+    },
+    selectFocus() {
+      if (this.remote) {
+        this.remoteMethod()
+      }
+    },
+    selectChange(value) {
+      this.$emit('change', value)
+    }
+  }
+}
+</script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.qk-select{
+  width: 100%
+}
+</style>

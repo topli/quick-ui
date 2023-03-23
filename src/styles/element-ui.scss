@@ -1,0 +1,184 @@
+$inputW: 200px;
+
+@mixin form-item-input__style {
+  .el-form {
+    .el-input{
+      .el-input__inner{
+        width: $inputW;
+      }
+    }
+    .el-date-editor--date {
+      width: $inputW;
+      .el-input__inner {
+        padding: 0 15px;
+      }
+      .el-input__prefix {
+        display: none;
+      }
+    }
+    .el-date-editor--datetime {
+      width: $inputW;
+      .el-input__inner {
+        padding: 0 15px;
+      }
+      .el-input__prefix {
+        display: none;
+      }
+    }
+    .el-date-editor--daterange {
+      width: auto;
+      .el-range-input {
+        width: $inputW / 2;
+      }
+      .el-icon-date {
+        display: none;
+      }
+    }
+    .el-date-editor--datetimerange {
+      width: auto;
+      // width: 410px;
+      .el-range-input {
+        width: $inputW - 26px;
+      }
+      .el-icon-time {
+        display: none;
+      }
+    }
+    .el-cascader {
+      width: 100%;
+    }
+  }
+}
+
+//to reset element-ui default css
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+//暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+.qk-list-wrapper {
+  // 搜索栏 样式
+  .qk-search-wrapper {
+    .qk-search-form {
+      @include form-item-input__style()
+    }
+    .el-form-item {
+      margin-bottom: 12px;
+    }
+  }
+}
+.qk-dialog-form-wrapper {
+  @include form-item-input__style()
+}
+.el-form.custom-form {
+  // 重构样式
+  .el-input__inner{
+    padding-right: 15px!important;
+    height: 40px;
+    border-radius: 10px;
+    background: #F0F0F0;
+  }
+  .el-textarea__inner {
+    border-radius: 10px;
+    background: #F0F0F0;
+  }
+  .el-form-item__label {
+    line-height: 40px;
+    color: #666666;
+    font-weight: 400;
+  }
+  .uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .uploader-icon {
+    font-size: 18px;
+    color: #8c939d;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background-color: #F0F0F0;
+  }
+  .image {
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+  .uploader+span{
+    color: #AAAAAA;
+  }
+}
+
+.custom-el-dialog {
+  border-radius: 4px;
+  .el-dialog__header {
+    position: relative;
+    padding: 10px 20px 10px;
+    .el-dialog__headerbtn {
+      top: 10px;
+      z-index: 9999;
+    }
+  }
+  .el-dialog__body {
+    padding: 0;
+    // padding: 20px;
+  }
+}
+
+.qk-tab-detail, .qk-detail {
+  min-height: 200px;
+}
+// from hover 提示
+.form-item-tooltip {
+  &-content {
+    position: fixed;
+    display: none;
+    opacity: 0;
+    padding: 8px 10px;
+    background: rgba(17, 22, 67, 1);
+    border-radius: 4px;
+    font-size: 12px;
+    transform: translateY((calc(-100% - 10px)));
+    color: #fff;
+    z-index: 99;
+    &::after{
+      content: '';
+      position: absolute;
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-color: transparent;
+      border-style: solid;
+      bottom: -6px;
+      border-top-color: rgba(17, 22, 67, 1);
+      border-bottom-width: 0;
+    }
+  }
+  &:hover{
+    .form-item-tooltip-content {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
