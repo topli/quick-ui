@@ -1,6 +1,5 @@
 import _ from 'loadsh'
-import Vue from 'vue'
-import Dy from './index'
+
 export default {
   props: {
     // string只能设置全局组件、Object可以设置引入自定义组件
@@ -31,13 +30,11 @@ export default {
     }
     let childrens = null
     if (!_.isEmpty(this.childrens)) {
-      const Dynamic = Vue.extend(Dy)
       if (Array.isArray(this.childrens)) {
         childrens = []
         for (let i = 0; i < this.childrens.length; i++) {
           const child = this.childrens[i]
-          const ins = new Dynamic({ el: document.createElement('div'), propsData: child })
-          childrens.push(ins._vnode)
+          childrens.push(h(child.tag, { props: { ...child } }))
         }
       } else {
         childrens = this.childrens

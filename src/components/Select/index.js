@@ -1,31 +1,3 @@
-<!--
-<template>
-  <div class="qk-select">
-    <el-select
-      v-model="selectValue"
-      :loading="loading"
-      :remote-method="remoteMethod"
-      :filterable="filterable"
-      :clearable="clearable"
-      :multiple="multiple"
-      :disabled="disabled"
-      :collapse-tags="multiple"
-      v-bind="$attrs"
-      remote
-      reserve-keyword
-      @focus="selectFocus"
-      @change="selectChange">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"/>
-    </el-select>
-  </div>
-</template>
--->
-
-<script>
 import _ from 'loadsh'
 import { Select } from 'element-ui'
 
@@ -139,10 +111,3 @@ export default {
     )
   }
 }
-</script>
-
-<style rel="stylesheet/scss" lang="scss" scoped>
-.qk-select{
-  width: 100%
-}
-</style>

@@ -17,7 +17,7 @@ import '../directive'
 import '../styles/element-ui.scss'
 
 // eslint-disable-next-line no-unused-vars
-const install = function(Vue, options = {}) {
+const install = function(Vue, config = {}) {
   // 静态方法
   if (install.installed) return
   install.installed = true
@@ -35,6 +35,7 @@ const install = function(Vue, options = {}) {
   // 调用组件
   Vue.prototype.$qkDialog = QkDialog
   Vue.prototype.$qkUtils = QkUtils
+  Vue.prototype.$qkConfig = config
 }
 
 export default {

@@ -12,7 +12,8 @@
     "element-ui": "^2.15.13",
     "loadsh": "^0.0.4",
     "normalize.css": "^8.0.1",
-    "vue": "^2.6.14"
+    "vue": "^2.6.14",
+    "vue-router": "3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

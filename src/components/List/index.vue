@@ -9,6 +9,7 @@
                 v-model.trim="listSearch.formData[item.field]"
                 :tag="item.tag"
                 :config="item.config"
+                :childrens="item.childrens"
               />
             </el-form-item>
           </template>
@@ -27,7 +28,7 @@
               placement="top"
             >
               <div class="qk-search-btn">
-                <i :class="`gmmc-icon icon-${btn.icon}`"></i>
+                <i :class="`${iconfont} icon-${btn.icon}`"></i>
               </div>
             </el-tooltip>
           </el-button>
@@ -115,6 +116,11 @@ export default {
       },
       deep: true,
       immediate: true,
+    }
+  },
+  computed: {
+    iconfont() {
+      return this.$qkConfig.iconfont
     }
   },
   data() {

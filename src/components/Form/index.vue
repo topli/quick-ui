@@ -3,14 +3,12 @@
     <el-scrollbar>
       <div class="qk-dialog-form-body">
         <slot name="body">
-          <el-form ref="form" v-bind="$attrs">
-            <el-row>
-              <el-col v-for="item in filterItems" :key="item.prop" :span="colSpan(item)">
-                <el-form-item :label="showLabel(item)" :prop="item.prop" :key="item.prop">
-                  <QkDynamic v-model.trim="$attrs.model[item.prop]" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
-                </el-form-item>
-              </el-col>
-            </el-row>
+          <el-form ref="form" inline v-bind="$attrs">
+            <template v-for="item in filterItems">
+              <el-form-item :label="showLabel(item)" :prop="item.field" :key="item.field">
+                <QkDynamic v-model.trim="$attrs.model[item.field]" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
+              </el-form-item>
+            </template>
           </el-form>
         </slot>
       </div>
@@ -24,7 +22,7 @@
 <script>
 export default {
   props: {
-    items: {
+    fields: {
       type: Array,
       default: () => []
     },
@@ -39,7 +37,7 @@ export default {
   },
   computed: {
     filterItems() {
-      return this.items.filter(item => !!item)
+      return this.fields.filter(item => !!item)
     }
   },
   methods: {
@@ -73,7 +71,6 @@ export default {
   .qk-dialog-form-body {
     padding: 20px 30px 0px 20px;
     max-height: 60vh;
-    overflow: auto;
     .el-form {
       .el-input .el-input__inner,.el-date-editor,.el-select  {
         width: 100%;
