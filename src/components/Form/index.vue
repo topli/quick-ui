@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: 'QkForm',
   props: {
     fields: {
       type: Array,

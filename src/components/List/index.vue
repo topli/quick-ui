@@ -62,6 +62,7 @@
 <script>
 import _ from "loadsh";
 export default {
+  name: 'QkList',
   props: {
     loading: {
       type: Boolean,

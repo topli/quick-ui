@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'QkSearch',
   props: {
     paddingRight: {
       type: String,

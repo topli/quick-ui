@@ -1,6 +1,7 @@
 import _ from 'loadsh'
 
 export default {
+  name: 'QkDynamic',
   props: {
     // string只能设置全局组件、Object可以设置引入自定义组件
     tag: [String, Object],

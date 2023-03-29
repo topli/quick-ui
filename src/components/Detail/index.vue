@@ -25,7 +25,7 @@
     return map
   }
   export default {
-    name: 'qkDetail',
+    name: 'QkDetail',
     components: {
       DetailTooltip
     },

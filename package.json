@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "private": false,
   "files": ["lib"],
+  "main": "lib/incar-quick-ui.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

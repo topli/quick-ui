@@ -11,6 +11,7 @@
 <script>
 import Vue from 'vue'
 export default {
+  name: "QkTabDetail",
   props: {
     data: {
       type: Object,

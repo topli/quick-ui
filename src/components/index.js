@@ -17,21 +17,31 @@ import '../directive'
 
 import '../styles/element-ui.scss'
 
+
+const components = [
+  QkDynamic,
+  QkTable,
+  QkList,
+  QkSearch,
+  QkSelect,
+  QkForm,
+  QkDetail,
+  QkTabDetail,
+  QkText,
+  QkTable,
+  QkDialog
+];
+
+
 const install = function (Vue, config = {}) {
   // 静态方法
   if (install.installed) return
   install.installed = true
   Vue.use(ElementUI, config.elConfig || {})
   // 全局组件
-  Vue.component('QkDynamic', QkDynamic)
-  Vue.component('QkTable', QkTable)
-  Vue.component('QkList', QkList)
-  Vue.component('QkSearch', QkSearch)
-  Vue.component('QkSelect', QkSelect)
-  Vue.component('QkForm', QkForm)
-  Vue.component('QkTabDetail', QkTabDetail)
-  Vue.component('QkDetail', QkDetail)
-  Vue.component('QkText', QkText)
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
   // 调用组件
   Vue.prototype.$qkDialog = QkDialog
   Vue.prototype.$qkUtils = QkUtils
@@ -40,12 +50,5 @@ const install = function (Vue, config = {}) {
 
 export default {
   install,
-  QkDynamic,
-  QkTable,
-  QkSearch,
-  QkList,
-  QkSelect,
-  QkForm,
-  QkTabDetail,
-  QkDetail
+  ...components
 }
