@@ -9,7 +9,7 @@ import router from '@/router'
 
 Vue.config.productionTip = false
 
-Vue.use(QuickUi, { iconfont: 'qk-icon' })
+Vue.use(QuickUi, { iconfont: 'qk-icon', elConfig: { size: 'small' } })
 
 new Vue({
   router,

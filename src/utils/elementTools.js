@@ -71,6 +71,7 @@ export const formField = (field, label, tag = 'Input', config = {}) => {
     tag: t,
     field,
     label,
+    formItemClass: config.formItemClass,
     config: _.merge({attrs, props}, config)
   }
 }
@@ -83,8 +84,17 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
     tag: t,
     field,
     label,
+    formItemClass: config.formItemClass,
     childrens: hanlderChildrens(childrens, t),
     config: _.merge({attrs, props }, config)
+  }
+}
+
+export const formTitle = (title, formItemClass) => {
+  return {
+    tag: 'div',
+    formItemClass: ['form-is-full', 'form-title', formItemClass],
+    childrens: title
   }
 }
 /**

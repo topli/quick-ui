@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name quick-ui --dest lib src/components/index.js"
+    "lib": "vue-cli-service build --target lib --name incar-quick-ui --dest lib src/components/index.js"
   },
   "dependencies": {
     "core-js": "^3.8.3",

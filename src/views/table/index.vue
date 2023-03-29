@@ -10,6 +10,7 @@
 
 <script>
 import { formField, formFieldGroup, generateBtns } from "@/utils"
+import { sex } from '@/libs/options'
 import Add from './add'
 export default {
   components: {},
@@ -23,10 +24,10 @@ export default {
         },
         fields: [
           // 对象方式
-          { tag: 'el-input', field: 'sim', label: 'MSISDN', config: { attrs: { placeholder: 'MSISDN' }, props: { clearable: true }} },
+          { tag: 'el-input', field: 'username', label: '用户名', config: { attrs: { placeholder: '用户名' }, props: { clearable: true }} },
           // 函数方式 默认渲染el-input标签
-          formField("iccid", "ICCID"),
-          formField("imei", "IMEI"),
+          formField("name", "姓名"),
+          formFieldGroup("sex", "性别", sex),
           // 函数方式 指定渲染标签
           formField("time", "时间", 'DatePicker', { props: { type: 'datetime' }}),
           // formField("datePickerRange", "日期区间", 'DatePicker', { props: { type: 'datetimerange' }}),
@@ -46,28 +47,37 @@ export default {
         data: [],
         columns: [
           {
-            key: "sim",
-            label: "MSISDN"
+            key: "userName",
+            label: "用户名"
           },
           {
-            key: "iccid",
-            label: "ICCID"
+            key: "name",
+            label: "姓名"
           },
           {
-            key: "imei",
-            label: "IMEI"
+            key: "mobile",
+            label: "手机号"
           },
           {
-            key: "dateactivated",
-            label: "激活时间"
+            key: "identityCard",
+            label: "身份证"
           },
           {
-            key: "restrictTime",
-            label: "实名限制时间"
+            key: "sex",
+            label: "性别",
+            options: sex
           },
           {
-            key: "updateTime",
-            label: "更新时间"
+            key: "qq",
+            label: "qq"
+          },
+          {
+            key: "email",
+            label: "电子邮箱"
+          },
+          {
+            key: "address",
+            label: "联系地址"
           },
           // {
           //   key: 'simStatus',
@@ -87,15 +97,19 @@ export default {
           {
             key: "buttons",
             label: "操作",
-            width: "80",
+            width: "120",
             align: "center",
             fixed: "right",
             render: (h, params) => {
               const buttons = [
                 {
+                  text: "编辑",
+                  click: this.updateData,
+                },
+                {
                   text: "详情",
                   click: this.showDetail,
-                },
+                }
               ]
               return generateBtns(h, params, buttons)
             },
@@ -111,7 +125,32 @@ export default {
     }
   },
   created() {
-    this.table.data = [{}, {}, {}]
+    this.table.data = [
+      {
+        userName: 'li1',
+        name: '李1',
+        mobile: '15717179551',
+        identityCard: '123456789123456',
+        sex: 1,
+        qq: '123456789'
+      },
+      {
+        userName: 'li2',
+        name: '李2',
+        mobile: '15717179552',
+        identityCard: '123456789123456',
+        sex: 2,
+        qq: '123456789'
+      },
+      {
+        userName: 'li3',
+        name: '李3',
+        mobile: '15717179553',
+        identityCard: '123456789123456',
+        sex: 2,
+        qq: '123456789'
+      }
+    ]
     this.page.totalElement = 3
   },
   methods: {
@@ -119,18 +158,28 @@ export default {
       console.log(search, page)
     },
     showDetail() {},
+    onAction(action) {
+      // 新增完成后执行操作
+      // todo 刷新列表
+      if (action === 'success') {
+        this.getList()
+      }
+    },
     addData() {
       this.$qkDialog({
         title: '新增',
         components: Add,
         width: 690,
-        onAction: (action) => {
-          // 新增完成后执行操作
-          // todo 刷新列表
-          if (action === 'success') {
-            this.getList()
-          }
-        }
+        onAction: this.onAction
+      })
+    },
+    updateData(row) {
+      this.$qkDialog({
+        title: '编辑',
+        components: Add,
+        props: { data: row },
+        width: 690,
+        onAction: this.onAction
       })
     }
   }

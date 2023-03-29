@@ -3,12 +3,10 @@
     <el-scrollbar>
       <div class="qk-dialog-form-body">
         <slot name="body">
-          <el-form ref="form" inline v-bind="$attrs">
-            <template v-for="item in filterItems">
-              <el-form-item :label="showLabel(item)" :prop="item.field" :key="item.field">
-                <QkDynamic v-model.trim="$attrs.model[item.field]" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
-              </el-form-item>
-            </template>
+          <el-form ref="form" v-bind="$attrs">
+            <el-form-item v-for="item in filterItems" :class="[formItemSplit ? `form-item-split-${formItemSplit}` : '', item.formItemClass]" :label="showLabel(item)" :prop="item.field" :key="item.field">
+              <QkDynamic v-model.trim="$attrs.model[item.field]" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
+            </el-form-item>
           </el-form>
         </slot>
       </div>
@@ -33,6 +31,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    formItemSplit: {
+      type: [Number, String],
+      default: 1
     }
   },
   computed: {
@@ -66,17 +68,42 @@ export default {
       .el-scrollbar__wrap {
         overflow-x: hidden;
         margin-bottom: 0!important;
+        max-height: 60vh;
       }
     }
   .qk-dialog-form-body {
-    padding: 20px 30px 0px 20px;
-    max-height: 60vh;
+    padding: 10px 30px 0px 20px;
     .el-form {
       .el-input .el-input__inner,.el-date-editor,.el-select  {
         width: 100%;
       }
       .el-textarea__inner {
         resize: none;
+      }
+      
+      .el-form-item {
+        display: inline-block;
+      }
+      .form-title {
+        .el-form-item__content {
+          margin-left: 0!important;
+        }
+      }
+      .form-item-split-1 {
+        width: 100%;
+      }
+      .form-item-split-2 {
+        width: 50%;
+      }
+      .form-item-split-3 {
+        width: 33%;
+      }
+      .form-is-full {
+        display: block;
+        width: 100%;
+        .el-form-item__content {
+          font-size: 18px;
+        }
       }
     }
   }

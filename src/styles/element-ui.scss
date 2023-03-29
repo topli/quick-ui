@@ -80,6 +80,14 @@ $inputW: 220px;
       margin-bottom: 12px;
     }
   }
+  .qk-table {
+    .list-btn {
+      cursor: pointer;
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
 }
 .qk-dialog-form-wrapper {
   @include form-item-input__style()
