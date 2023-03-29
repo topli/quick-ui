@@ -5,7 +5,6 @@
       ref="qkTable"
       v-bind="$attrs"
       :data="tableData"
-      :height="$attrs.height ? $attrs.height : tableHeight"
       style="width: 100%"
       v-on="$listeners">
       <el-table-column
@@ -70,7 +69,6 @@ export default {
   },
   data() {
     return {
-      tableHeight: 0,
       tableData: [],
       selectionChange: () => {}
     }
@@ -103,31 +101,10 @@ export default {
       }
     }
   },
-  mounted() {
-    window.addEventListener('resize', this.setTableHeight)
-    this.setTableHeight()
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.setTableHeight)
-  },
   methods: {
     // 过滤器
     handleComputed(filterName, value) {
       return this.$options.filters[filterName](value) || '--'
-    },
-    setTableHeight() {
-      // document.body.clientHeight 窗口大小
-      // this.$el.offsetTop 表格离浏览器窗口顶部的距离
-      // 70 分页部分高度
-      this.$nextTick(() => {
-        const clientHeight = this.$el.offsetParent ? this.$el.offsetParent.clientHeight : this.$el.clientHeight
-        this.tableHeight = this.height || clientHeight - this.$el.offsetTop - 70
-        // 设置默认高度
-        if (this.tableHeight < 1) {
-          this.tableHeight = 400
-        }
-        this.$refs.qkTable && this.$refs.qkTable.doLayout()
-      })
     },
     setDefaultSelections() {
       if (this.defaultSelections && this.defaultSelections.length) {

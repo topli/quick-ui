@@ -70,9 +70,9 @@ $inputW: 220px;
 }
 
 
-.qk-list-wrapper {
+.qk-list {
   // 搜索栏 样式
-  .qk-search-wrapper {
+  .qk-search {
     .qk-search-form {
       @include form-item-input__style()
     }

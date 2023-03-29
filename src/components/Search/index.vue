@@ -1,18 +1,12 @@
 <template>
-  <div class="qk-search-wrapper">
-    <div id="qk-search-form" :style="style" class="qk-search-form" @keyup.enter="onSearch">
+  <div class="qk-search">
+    <div ref="qkSearchForm" :style="style" class="qk-search-form" @keyup.enter="onSearch">
       <slot/>
     </div>
-    <div class="qk-search-btns-wrapper">
-      <div class="btns">
-        <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
-        <el-button class="qk-search" type="primary" round @click="onSearch">
-          <div class="qk-search-btn">
-            <i class="el-icon-search"></i>
-          </div>
-        </el-button>
-        <slot name="btns"/>
-      </div>
+    <div ref="qkSearchBtns" class="qk-search-btns">
+      <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
+      <el-button class="qk-search-btn" icon="el-icon-search" type="primary" round @click="onSearch" />
+      <slot name="btns"/>
     </div>
   </div>
 </template>
@@ -28,24 +22,23 @@ export default {
   data() {
     return {
       toggleOpen: false,
-      formHeight: 0
+      formHeight: 0,
+      btnsWidth: 0,
+      btnsHeight: 0
     }
   },
   computed: {
     showMore() {
-      return this.formHeight > 60
+      return this.formHeight > this.btnsHeight + 12 // 12是form-item的margin-bottom
     },
     style() {
       const defStyle = {}
       if (this.toggleOpen) {
         defStyle.height = this.formHeight + 'px'
       } else {
-        defStyle.height = '50px'
+        defStyle.height = this.btnsHeight + 'px'
       }
-      return defStyle
-    },
-    btnStyle() {
-      const defStyle = { width: this.paddingRight + 'px' }
+      defStyle.paddingRight = this.btnsWidth + 'px'
       return defStyle
     },
     toggleFromIcon() {
@@ -57,13 +50,7 @@ export default {
   },
   mounted() {
     this.getFormHeight()
-    const searchForm = document.getElementById('qk-search-form')
-    searchForm.addEventListener('transitionend', (e) => {
-      if (e.target === searchForm) {
-        var myEvent = new Event('resize')
-        window.dispatchEvent(myEvent)
-      }
-    })
+    this.getBtnsWidht()
     window.addEventListener('resize', this.getFormHeight)
   },
   beforeDestroy() {
@@ -74,10 +61,12 @@ export default {
       this.$nextTick(() => {
         if (this.$slots.default && this.$slots.default[0]) {
           this.formHeight = this.$slots.default[0].elm.clientHeight
-        } else {
-          this.formHeight = 58
         }
       })
+    },
+    getBtnsWidht() {
+      this.btnsWidth = this.$refs.qkSearchBtns.clientWidth
+      this.btnsHeight = this.$refs.qkSearchBtns.clientHeight
     },
     openSearchFun() {
       this.toggleOpen = !this.toggleOpen
@@ -90,36 +79,25 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .qk-search-wrapper {
+  .qk-search {
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  .qk-search-form {
-    min-width: 135px;
-    overflow: hidden;
-    transition: height 0.3s;
-    -moz-transition: height 0.3s; /* Firefox 4 */
-    -webkit-transition: height 0.3s; /* Safari 和 Chrome */
-    -o-transition: height 0.3s; /* Opera */
-  }
-  .qk-search-btns-wrapper {
-    text-align: right;
-    .btns {
-      display: flex;
+    margin: 5px 0;
+    &-form {
+      min-width: 135px;
+      overflow: hidden;
+      transition: height 0.3s;
+      -moz-transition: height 0.3s; /* Firefox 4 */
+      -webkit-transition: height 0.3s; /* Safari 和 Chrome */
+      -o-transition: height 0.3s; /* Opera */
     }
-    .btn-more-item {
-      font-size: 1rem;
-    }
-    .el-dropdown {
-      margin-left: 10px;
-    }
-    .qk-search-btn {
-      display: flex;
-      align-items: center;
-      i {
-        // margin-right: 2px;
+    &-btns {
+      position: absolute;
+      padding: 0 10px;
+      top: 0;
+      right: 0;
+      .el-dropdown {
+        margin-left: 10px;
       }
     }
   }

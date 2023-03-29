@@ -1,4 +1,5 @@
 // 此组件库依赖 element-ui
+import ElementUI from 'element-ui'
 import QkDynamic from './Dynamic'
 import QkTable from './Table'
 import QkList from './List'
@@ -12,15 +13,16 @@ import QkText from './Text'
 import QkDialog from './Dialog/index.js'
 
 import * as QkUtils from '../utils/index'
+
 import '../directive'
 
 import '../styles/element-ui.scss'
 
-// eslint-disable-next-line no-unused-vars
-const install = function(Vue, config = {}) {
+const install = function (Vue, config = {}) {
   // 静态方法
   if (install.installed) return
   install.installed = true
+  Vue.use(ElementUI, config.elConfig || {})
   // 全局组件
   Vue.component('QkDynamic', QkDynamic)
   Vue.component('QkTable', QkTable)

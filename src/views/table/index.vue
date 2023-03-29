@@ -23,20 +23,22 @@ export default {
         },
         fields: [
           // 对象方式
-          { tag: 'el-input', field: 'sim', label: 'MSISDN', config: { attrs: { placeholder: 'MSISDN' }} },
+          { tag: 'el-input', field: 'sim', label: 'MSISDN', config: { attrs: { placeholder: 'MSISDN' }, props: { clearable: true }} },
           // 函数方式 默认渲染el-input标签
           formField("iccid", "ICCID"),
           formField("imei", "IMEI"),
           // 函数方式 指定渲染标签
           formField("time", "时间", 'DatePicker', { props: { type: 'datetime' }}),
-          formField("datePickerRange", "日期区间", 'DatePicker', { props: { type: 'datetimerange' }}),
-          formField("timerange", "时间区间", 'TimePicker'),
-          formFieldGroup('simStatus', 'SIM卡状态', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}]),
+          // formField("datePickerRange", "日期区间", 'DatePicker', { props: { type: 'datetimerange' }}),
+          // formField("timerange", "时间区间", 'TimePicker'),
+          // formFieldGroup('simStatus', 'SIM卡状态', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}]),
+          // RadioGroup demo
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'RadioGroup'),
+          // CheckboxGroup demo
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'CheckboxGroup'),
         ],
         btns: [
-          {text: '新增', icon: 'add', click: this.addData}
+          { text: '新增', icon: 'add', click: this.addData }
         ],
       },
       // 表格
@@ -45,59 +47,41 @@ export default {
         columns: [
           {
             key: "sim",
-            label: "MSISDN",
-            minWidth: "170",
-            align: "center",
+            label: "MSISDN"
           },
           {
             key: "iccid",
-            label: "ICCID",
-            minWidth: "180",
-            align: "center",
+            label: "ICCID"
           },
           {
             key: "imei",
-            label: "IMEI",
-            minWidth: "180",
-            align: "center",
+            label: "IMEI"
           },
           {
             key: "dateactivated",
-            label: "激活时间",
-            minWidth: "160",
-            align: "center",
+            label: "激活时间"
           },
           {
             key: "restrictTime",
-            label: "实名限制时间",
-            minWidth: "160",
-            align: "center",
+            label: "实名限制时间"
           },
           {
             key: "updateTime",
-            label: "更新时间",
-            minWidth: "160",
-            align: "center",
+            label: "更新时间"
           },
           // {
           //   key: 'simStatus',
           //   label: 'SIM卡状态',
-          //   minWidth: '120',
-          //   align: 'center',
           //   options: getOptions('simStatus')
           // },
           // {
           //   key: 'saleStatus',
           //   label: '整车流量状态',
-          //   minWidth: '100',
-          //   align: 'center',
           //   options: getOptions('saleStatus')
           // },
           // {
           //   key: 'restrictStatus',
           //   label: '实名限制状态',
-          //   minWidth: '100',
-          //   align: 'center',
           //   options: getOptions('restrictStatus')
           // },
           {
@@ -132,7 +116,7 @@ export default {
   },
   methods: {
     onSearch(search, page) {
-      console.log(search, page);
+      console.log(search, page)
     },
     showDetail() {},
     addData() {
