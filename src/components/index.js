@@ -8,7 +8,6 @@ import QkSelect from './Select'
 import QkForm from './Form'
 import QkTabDetail from './TabDetail'
 import QkDetail from './Detail'
-import QkGroup from './Detail/detailGroup'
 import QkText from './Text'
 import QkDialog from './Dialog/index.js'
 
@@ -30,7 +29,6 @@ const install = function (Vue, config = {}) {
   Vue.component('QkSearch', QkSearch)
   Vue.component('QkSelect', QkSelect)
   Vue.component('QkForm', QkForm)
-  Vue.component('QkGroup', QkGroup)
   Vue.component('QkTabDetail', QkTabDetail)
   Vue.component('QkDetail', QkDetail)
   Vue.component('QkText', QkText)
@@ -48,7 +46,6 @@ export default {
   QkList,
   QkSelect,
   QkForm,
-  QkGroup,
   QkTabDetail,
   QkDetail
 }

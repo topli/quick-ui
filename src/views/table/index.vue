@@ -12,6 +12,7 @@
 import { formField, formFieldGroup, generateBtns } from "@/utils"
 import { sex } from '@/libs/options'
 import Add from './add'
+import Detail from './detail'
 export default {
   components: {},
   data: function () {
@@ -157,7 +158,14 @@ export default {
     onSearch(search, page) {
       console.log(search, page)
     },
-    showDetail() {},
+    showDetail(row) {
+      this.$qkDialog({
+        title: '详情',
+        components: Detail,
+        props: { data: row },
+        width: 690
+      })
+    },
     onAction(action) {
       // 新增完成后执行操作
       // todo 刷新列表
