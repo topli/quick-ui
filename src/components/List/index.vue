@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     iconfont() {
-      return this.$qkConfig.iconfont
+      return this.$qkConfig && this.$qkConfig.iconfont
     }
   },
   data() {

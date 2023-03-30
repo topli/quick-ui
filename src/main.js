@@ -3,13 +3,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import 'element-ui/packages/theme-chalk/lib/index.css'
 
-import QuickUi from '@c'
+import QuickUI from '@c'
 
 import router from '@/router'
 
 Vue.config.productionTip = false
 
-Vue.use(QuickUi, { iconfont: 'qk-icon', elConfig: { size: 'small' } })
+Vue.use(ElementUI)
+Vue.use(QuickUI, { iconfont: 'qk-icon' })
 
 new Vue({
   router,

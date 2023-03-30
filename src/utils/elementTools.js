@@ -1,5 +1,4 @@
 import _ from 'loadsh'
-import Vue from 'vue'
 import { elComponentNames } from './dict'
 
 /**
@@ -112,7 +111,7 @@ export const changeFieldsByIndex = (fields, index, newField) => {
       return src
     }
   }
-  Vue.set(fields, index, _.mergeWith(fields[index], newField, customizer))
+  this.$set(fields, index, _.mergeWith(fields[index], newField, customizer))
 }
 
 /**
