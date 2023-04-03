@@ -1,6 +1,6 @@
 {
   "name": "incar-quick-ui",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "private": false,
   "license": "MIT",
   "files": [
@@ -12,7 +12,7 @@
     "loadsh": "^0.0.4",
     "vue": "^2.5.17"
   },
-  "main": "lib/incar-quick-ui.common.js",
+  "main": "lib/incar-quick-ui.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
