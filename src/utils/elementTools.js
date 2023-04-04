@@ -36,6 +36,12 @@ const hanlderChildrens = (childrens, parentTag) => {
   }
   return childrens ? childrens.map(item => {
     item.tag = childTag
+    if (childTag === 'el-radio') {
+      item.props = { label: item.value }
+    } else {
+      item.props = { value: item.value, label: item.label }
+    }
+    item.text = item.label
     return item
   }) : []
 }
@@ -79,10 +85,11 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
   const t = getTag(tag)
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true, filterable: true }
+  console.log(hanlderChildrens(childrens, t));
   return {
     tag: t,
     field,
-    label,
+    label, 
     formItemClass: config.formItemClass,
     childrens: hanlderChildrens(childrens, t),
     config: _.merge({attrs, props }, config)

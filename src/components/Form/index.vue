@@ -55,9 +55,6 @@ export default {
         return item.config.attrs.placeholder
       }
       return ''
-    },
-    colSpan(item) {
-      return item.config ? (item.config.span || 12) : 12
     }
   }
 }

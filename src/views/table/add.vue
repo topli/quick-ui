@@ -47,7 +47,7 @@ export default {
         formField('name', '姓名'),
         formField('mobile', '手机号'),
         formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别', sex),
+        formFieldGroup('sex', '性别', sex, 'RadioGroup'),
         formFieldGroup('orgType', '机构类型', [{value: '1', label: '系统'}, {value: '2', label: '运营商'}]),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
@@ -69,7 +69,9 @@ export default {
     }
   },
   methods: {
-    submit() {}
+    submit() {
+      console.log(this.form);
+    }
   }
 }
 </script>

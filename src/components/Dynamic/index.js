@@ -35,7 +35,7 @@ export default {
         childrens = []
         for (let i = 0; i < this.childrens.length; i++) {
           const child = this.childrens[i]
-          childrens.push(h(child.tag, { props: { ...child } }))
+          childrens.push(h(child.tag, { props: { ...child.props || {} } }, child.text))
         }
       } else {
         childrens = this.childrens

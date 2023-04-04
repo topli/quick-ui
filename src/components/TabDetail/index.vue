@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 export default {
   name: "QkTabDetail",
   props: {
@@ -50,7 +49,7 @@ export default {
     mountedComponent(tab) {
       console.log(tab)
       this.$nextTick(() => {
-        const Components = Vue.extend(tab.component)
+        const Components = window.Vue.extend(tab.component)
         const component = new Components({
           el: document.getElementById(`tab-pane-${tab.key}`),
           propsData: tab.props,

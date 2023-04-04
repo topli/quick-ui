@@ -1,10 +1,8 @@
 // 此组件库依赖 element-ui
-import ElementUI from 'element-ui'
 import QkDynamic from './Dynamic'
 import QkTable from './Table'
 import QkList from './List'
 import QkSearch from './Search'
-import QkSelect from './Select'
 import QkForm from './Form'
 import QkTabDetail from './TabDetail'
 import QkDetail from './Detail'
@@ -13,40 +11,41 @@ import QkDialog from './Dialog/index.js'
 
 import * as QkUtils from '../utils/index'
 
-import '../directive'
+import * as directives from '../directives'
 
 import '../styles/element-ui.scss'
-
 
 const components = [
   QkDynamic,
   QkTable,
-  QkList,
   QkSearch,
-  QkSelect,
+  QkList,
   QkForm,
   QkDetail,
   QkTabDetail,
-  QkText,
-  QkTable,
-  QkDialog
+  QkText
 ];
-
 
 const install = function (Vue, config = {}) {
   // 静态方法
   if (install.installed) return
   install.installed = true
-  Vue.use(ElementUI, config.elConfig || {})
   // 全局组件
   components.forEach(component => {
     Vue.component(component.name, component)
   })
-  // 调用组件
+
+  Object.keys(directives).forEach(key => {
+    if (directives[key])
+      Vue.directive(key, directives[key])
+  })
+  
   Vue.prototype.$qkDialog = QkDialog
   Vue.prototype.$qkUtils = QkUtils
   Vue.prototype.$qkConfig = config
 }
+
+export const utils = QkUtils
 
 export default {
   install,
