@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { formField, formFieldGroup, generateBtns } from "@/utils"
+import { changeFieldsByProp, formField, formFieldGroup, generateBtns } from "@/utils"
 import { sex } from '@/libs/options'
 import Add from './add'
 import Detail from './detail'
@@ -153,6 +153,7 @@ export default {
       }
     ]
     this.page.totalElement = 3
+    changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
   },
   methods: {
     onSearch(search, page) {

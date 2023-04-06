@@ -43,6 +43,10 @@ export default {
       // rerender
       this.filterData()
     }
-    return (this.renderContent ? this.renderContent(h, this.scope, this.val || {}) : this.val.label)
+    if (this.renderContent) {
+      return this.renderContent(h, this.scope, this.val || {})
+    } else {
+      return h('span', this.val.label)
+    }
   }
 }

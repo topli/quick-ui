@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import _ from 'loadsh'
 import { elComponentNames } from './dict'
 
@@ -85,7 +86,6 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
   const t = getTag(tag)
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true, filterable: true }
-  console.log(hanlderChildrens(childrens, t));
   return {
     tag: t,
     field,
@@ -118,7 +118,7 @@ export const changeFieldsByIndex = (fields, index, newField) => {
       return src
     }
   }
-  this.$set(fields, index, _.mergeWith(fields[index], newField, customizer))
+  Vue.set(fields, index, _.mergeWith(fields[index], newField, customizer))
 }
 
 /**

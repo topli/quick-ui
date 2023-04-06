@@ -1,11 +1,12 @@
+import Vue from 'vue'
 import Main from './index.vue'
+const Dialog = Vue.extend(Main)
 
 let instance
 const instances = []
 let seed = 1
 
 const DialogBox = function(options) {
-  const Dialog = window.Vue.extend(Main)
   options = options || {}
   const id = 'dialog_' + seed++
 
