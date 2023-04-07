@@ -15,7 +15,7 @@ Vue.config.productionTip = false
 window.Vue = Vue
 
 Vue.use(ElementUI)
-Vue.use(QuickUI, { iconfont: 'qk-icon' })
+Vue.use(QuickUI, { iconfont: 'qk-icon', searchBtnText: true })
 
 new Vue({
   router,

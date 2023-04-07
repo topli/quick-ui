@@ -1,6 +1,6 @@
 <template>
   <div class="qk-list">
-    <QkSearch v-if="search" @on-search="onSearch">
+    <QkSearch v-if="search" v-bind="listSearch" @on-search="onSearch">
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
           <el-form-item v-form-item-tooltip="item.label" :key="item.field">
@@ -16,18 +16,19 @@
       <template slot="btns">
         <el-button
           v-for="btn in listSearch.btns"
-          :key="btn.icon"
+          :key="btn.icon || btn.text"
           :disabled="btn.disabled || false"
           round
           @click="btn.click"
         >
           <el-tooltip
-            :disabled="!btn.text"
+            :disabled="!btn.icon"
             :content="btn.text"
             placement="top"
           >
             <div class="qk-search-btn">
-              <i :class="`${iconfont} icon-${btn.icon}`"></i>
+              <i v-if="btn.icon" :class="`${iconfont} icon-${btn.icon}`"></i>
+              <span v-else>{{ btn.text }}</span>
             </div>
           </el-tooltip>
         </el-button>

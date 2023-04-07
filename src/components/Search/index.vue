@@ -5,7 +5,9 @@
     </div>
     <div ref="qkSearchBtns" class="qk-search-btns">
       <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
-      <el-button class="qk-search-btn" icon="el-icon-search" type="primary" round @click="onSearch" />
+      <el-button class="qk-search-btn" :icon="searchBtnText ? '' : 'el-icon-search'" type="primary" round @click="onSearch">
+        {{ searchBtnText ? '查询' : ''}}
+      </el-button>
       <slot name="btns"/>
     </div>
   </div>
@@ -18,6 +20,10 @@ export default {
     paddingRight: {
       type: String,
       default: '135'
+    },
+    showText: {
+      type: Boolean,
+      default: null
     }
   },
   data() {
@@ -47,6 +53,14 @@ export default {
     },
     text() {
       return this.toggleOpen ? '收起' : '更多'
+    },
+    searchBtnText() {
+      if (this.showText !== null) {
+        return this.showText
+      }
+      if (this.$qkConfig.searchBtnText !== undefined) {
+        return this.$qkConfig.searchBtnText
+      }
     }
   },
   mounted() {
