@@ -71,7 +71,7 @@ const hanlderChildrens = (childrens, parentTag) => {
     default:
       break;
   }
-  return childrens ? childrens.map(item => {
+  return childrens ? _.cloneDeep(childrens).map(item => {
     item.tag = childTag
     if (childTag === 'el-radio') {
       item.props = { label: item.value }

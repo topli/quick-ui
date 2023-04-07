@@ -28,23 +28,22 @@ export default {
     filterData() {
       // this.val = {}
       if (this.options) {
-        const val = this.val.value = this.scope.row[this.prop]
+        const val = this.scope.row[this.prop]
         const find = this.options.find(item => item.value === val) || {}
-        // this.val = Object.assign(this.val, find)
-        this.val.label = find.label || ''
-        this.val.value = find.value || val
+        return find
       } else {
-        this.val.label = this.scope.row[this.prop]
+        return { label: this.scope.row[this.prop] }
       }
     }
   },
   render(h) {
+    let val = this.val
     if (this.isChange()) {
       // rerender
-      this.filterData()
+      val = this.filterData()
     }
     if (this.renderContent) {
-      return this.renderContent(h, this.scope, this.val || {})
+      return this.renderContent(h, this.scope, val || {})
     } else {
       return h('span', this.val.label)
     }

@@ -133,7 +133,7 @@ export default {
         mobile: '15717179551',
         identityCard: '123456789123456',
         sex: 1,
-        qq: '123456789'
+        qq: ['123456789', '123']
       },
       {
         userName: 'li2',
