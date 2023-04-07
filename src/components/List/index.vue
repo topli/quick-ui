@@ -37,6 +37,7 @@
     <QkTable
       ref="qkTable"
       class="qk-table"
+      :height="tableHeight"
       :loading="loading"
       :data="table.data"
       :columns="table.columns"
@@ -128,8 +129,12 @@ export default {
         btns: [],
         pages: {},
       },
-      listPage: {}
+      listPage: {},
+      tableHeight: 0
     };
+  },
+  mounted() {
+    this.setTableHeight()
   },
   methods: {
     onSearch() {
@@ -159,6 +164,15 @@ export default {
     handlerOn(on) {
       return on;
     },
+    setTableHeight() {
+      const taht = this
+      const table = document.getElementsByClassName('qk-table')[0]
+      const resizeObserver = new ResizeObserver(onResize);
+      resizeObserver.observe(table);
+      function onResize(e) {
+        taht.tableHeight = e[0].target.clientHeight
+      }
+    }
   },
 };
 </script>
