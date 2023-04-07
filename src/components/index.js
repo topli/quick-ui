@@ -45,8 +45,6 @@ const install = function (Vue, config = {}) {
   Vue.prototype.$qkConfig = config
 }
 
-export const utils = QkUtils
-
 export default {
   install,
   ...components

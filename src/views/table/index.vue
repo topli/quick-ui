@@ -153,7 +153,7 @@ export default {
       }
     ]
     this.page.totalElement = 3
-    changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
+    // changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
   },
   methods: {
     onSearch(search, page) {

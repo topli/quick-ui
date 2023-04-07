@@ -3,6 +3,42 @@ import _ from 'loadsh'
 import { elComponentNames } from './dict'
 
 /**
+ * 设置 fieldGroup childrens
+ * @param { * } childrens 组件子级
+ */
+const setChildrens = function (childrens) {
+  const fieldObj = this
+  const newChildrens = _.cloneDeep(hanlderChildrens(childrens, fieldObj.tag))
+  this.childrens = newChildrens
+}
+/**
+ * 设置 field 、fieldGroup props
+ * @param { * } props 组件props
+ */
+const setProps = function (props) {
+  const fieldObj = this
+  const newFieldObj = _.mergeWith(fieldObj.config.props, props, customizer)
+  this.config.props = newFieldObj
+}
+
+/**
+ * 设置 field 、fieldGroup on
+ * @param {*} on 组件事件
+ */
+const setOn = function (on) {
+  const fieldObj = this
+  const newFieldObj = _.mergeWith(fieldObj.config.on, on, customizer)
+  this.config.on = newFieldObj
+}
+
+const setFieldFun = function (obj) {
+  obj.setChildrens = setChildrens
+  obj.setProps = setProps
+  obj.setOn = setOn
+  return obj
+}
+
+/**
  * 判断是否 element 标签
  * @param {*} tag 
  * @returns 
@@ -46,7 +82,13 @@ const hanlderChildrens = (childrens, parentTag) => {
     return item
   }) : []
 }
-
+/**
+ * 特殊组件处理 config
+ * @param {*} config 
+ * @param {*} tag 
+ * @param {*} label 
+ * @returns 
+ */
 const hanlderConfig = (config, tag, label) => {
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true }
@@ -62,8 +104,14 @@ const hanlderConfig = (config, tag, label) => {
   return { attrs , props }
 }
 
+const customizer = (obj, src) =>{
+  if (_.isArray(src)) {
+    return src
+  }
+}
+
 /**
- * 生成动态formItem内容
+ * 生成动态组件
  * @param {*} field 字段key
  * @param {*} label 字段名
  * @param {*} tag 动态标签
@@ -73,27 +121,35 @@ const hanlderConfig = (config, tag, label) => {
 export const formField = (field, label, tag = 'Input', config = {}) => {
   const t = getTag(tag)
   const { attrs, props } = hanlderConfig(config, tag, label)
-  return {
+  return setFieldFun({
     tag: t,
     field,
     label,
     formItemClass: config.formItemClass,
     config: _.merge({attrs, props}, config)
-  }
+  })
 }
-
+/**
+ * 生成动态组件  Select RadioGroup CheckboxGroup
+ * @param {*} field 字段key
+ * @param {*} label 字段名
+ * @param {*} childrens 子级
+ * @param {*} tag 标签 (支持 Select RadioGroup CheckboxGroup 默认Select)
+ * @param {*} config 配置项 参考 https://v2.cn.vuejs.org/v2/guide/render-function.html#%E6%B7%B1%E5%85%A5%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1
+ * @returns 
+ */
 export const formFieldGroup = (field, label, childrens, tag = 'Select', config = {}) => {
   const t = getTag(tag)
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true, filterable: true }
-  return {
+  return setFieldFun({
     tag: t,
     field,
     label, 
     formItemClass: config.formItemClass,
     childrens: hanlderChildrens(childrens, t),
     config: _.merge({attrs, props }, config)
-  }
+  })
 }
 
 export const formTitle = (title, formItemClass) => {
@@ -111,12 +167,7 @@ export const formTitle = (title, formItemClass) => {
  */
 export const changeFieldsByIndex = (fields, index, newField) => {
   if (newField.childrens) {
-    newField.childrens = hanlderChildrens(newField.childrens, fields[index].tag)
-  }
-  function customizer(obj, src) {
-    if (_.isArray(src)) {
-      return src
-    }
+    newField.childrens = _.cloneDeep(hanlderChildrens(newField.childrens, fields[index].tag))
   }
   Vue.set(fields, index, _.mergeWith(fields[index], newField, customizer))
 }
