@@ -125,7 +125,6 @@ export const formField = (field, label, tag = 'Input', config = {}) => {
     tag: t,
     field,
     label,
-    formItemClass: config.formItemClass,
     config: _.merge({attrs, props}, config)
   })
 }
@@ -145,8 +144,7 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
   return setFieldFun({
     tag: t,
     field,
-    label, 
-    formItemClass: config.formItemClass,
+    label,
     childrens: hanlderChildrens(childrens, t),
     config: _.merge({attrs, props }, config)
   })

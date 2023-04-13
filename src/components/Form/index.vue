@@ -4,7 +4,7 @@
       <div class="qk-dialog-form-body">
         <slot name="body">
           <el-form ref="form" v-bind="$attrs">
-            <el-form-item v-for="item in filterItems" :class="[formItemSplit ? `form-item-split-${formItemSplit}` : '', item.formItemClass]" :label="showLabel(item)" :prop="item.field" :key="item.field">
+            <el-form-item v-for="item in filterItems" :class="[formItemSplit ? `form-item-split-${formItemSplit}` : '', item.config.formItemClass]" :label="showLabel(item)" v-bind="item.config.formItemProps" :label-width="item.config.formItemLabelWidth" :prop="item.field" :key="item.field">
               <QkDynamic v-model.trim="$attrs.model[item.field]" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
             </el-form-item>
           </el-form>
