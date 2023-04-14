@@ -1,5 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
+  productionSourceMap: false,
   transpileDependencies: true,
   lintOnSave: false,
   configureWebpack: { // 配置webpack
@@ -8,6 +10,11 @@ module.exports = defineConfig({
       alias: {
         '@c': '@/components'
       }
+    },
+    externals: {
+      vue: 'Vue',
+      lodash: '_',
+      'element-ui': 'ELEMENT'
     }
   }
 })
