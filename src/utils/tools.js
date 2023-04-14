@@ -1,3 +1,5 @@
+import Vue from "vue"
+
 const dateFormat = (str, fmt = 'yyyy-MM-dd HH:mm:ss') => {
   if (!str && isNaN(Date.parse(str))) return ''
   const date = new Date(str)
@@ -29,4 +31,63 @@ export const handlerRangeTime = (formData, rangeTimes) => {
       delete formData[item.key]
     }
   })
+}
+/**
+ * 获取对象类型 [object Null] [object Undefined] [object String] [object Number] [object Boolean] [object Function] [object Date] [object Array] [object Object]
+ * @param {} value 
+ * @returns 
+ */
+export const getObjType = value => {
+  return Object.prototype.toString.call(value)
+}
+/**
+ * 获取对象路径值
+ * @param {*} data 
+ * @param {*} path 
+ * @returns 
+ */
+export const getValueByPath = (data, path) => {
+  let value = data
+  if (path && typeof path === 'string') {
+    if (path.indexOf('.') !== -1) {
+      const propsArray = path.split('.')
+      for (let i = 0; i < propsArray.length; i++) {
+        const prop = propsArray[i]
+        value = value[prop]
+        if (!value) {
+          break
+        }
+      }
+    } else {
+      value = data[path]
+    }
+  }
+  return value
+}
+/**
+ * 设置对象路径值
+ * @param {*} data 
+ * @param {*} path 
+ * @param {*} value 
+ */
+export const setValueByPath = (data, path, value) => {
+  if (path && typeof path === 'string') {
+    if (path.indexOf('.') !== -1) {
+      const propsArray = path.split('.')
+      let val = data
+      for (let i = 0; i < propsArray.length; i++) {
+        const prop = propsArray[i]
+        if (i === propsArray.length - 1) {
+          Vue.set(val, prop, value)
+          break
+        }
+        val = val[prop]
+        if (!val) {
+          break
+        }
+      }
+    } else {
+      Vue.set(data, path, value)
+    }
+  }
 }

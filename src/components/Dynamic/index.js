@@ -1,3 +1,5 @@
+import { setValueByPath, getValueByPath, getObjType } from '@/utils'
+import { valueEquals } from 'element-ui/src/utils/util'
 import _ from 'loadsh'
 
 export default {
@@ -5,6 +7,8 @@ export default {
   props: {
     // string只能设置全局组件、Object可以设置引入自定义组件
     tag: [String, Object],
+    model: Object,
+    field: [String],
     // config 包含render函数所有配置，也可以设置自定义配置
     config: Object,
     // 绑定值
@@ -15,16 +19,35 @@ export default {
   data() {
     return {}
   },
+  methods: {
+    hanlderElementValue(value, tag) {
+      // 处理el-input v-model 绑定值为 Array 时转为字符串
+      if (tag === 'el-Input') {
+        if (getObjType(value) === '[object Array]') {
+          return value.toString()
+        }
+      }
+      return value
+    }
+  },
   render(h) {
+    let value = getValueByPath(this.model, this.field)
+    value = this.hanlderElementValue(value, this.tag)
     const defaultConfig = {
       props: {
-        value: this.value
+        value: value
       },
       on: {
-        input: (val) => {
+        input: (val, old) => {
+          if (!valueEquals(val, old)) {
+            setValueByPath(this.model, this.field, val)
+          }
           this.$emit('input', val)
         },
-        change: (val) => {
+        change: (val, old) => {
+          if (!valueEquals(val, old)) {
+            setValueByPath(this.model, this.field, val)
+          }
           this.$emit('change', val)
         }
       }

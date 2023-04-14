@@ -37,10 +37,10 @@
               :prop="col.key"
               :options="col.options"/>
             <span v-else-if="col.filter">
-              {{ filterValue(col.filter, scope.row[col.key]) }}
+              {{ filterValue(col.filter, getValueByPath(scope.row, col.key)) }}
             </span>
             <span v-else>
-              {{ showValue(scope.row[col.key]) }}
+              {{ showValue(getValueByPath(scope.row, col.key)) }}
             </span>
           </template>
         </el-table-column>
@@ -57,6 +57,8 @@
 <script>
 import _ from 'lodash'
 import renderColumn from './render-column'
+import { getObjType, getValueByPath } from '@/utils'
+
 export default {
   name: 'QkTable',
   components: { renderColumn },
@@ -103,12 +105,13 @@ export default {
     }
   },
   methods: {
+    getValueByPath: getValueByPath,
     // 过滤器
     filterValue(filterName, value) {
       return this.$options.filters[filterName](value) || ''
     },
     showValue(value) {
-      const type = Object.prototype.toString.call(value)
+      const type = getObjType(value)
       if (type === '[object Array]') {
         return value.join(',')
       }

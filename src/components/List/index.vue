@@ -5,7 +5,8 @@
         <template v-for="item in listSearch.fields">
           <el-form-item v-form-item-tooltip="item.label" :key="item.field">
             <QkDynamic
-              v-model.trim="listSearch.formData[item.field]"
+              :model="listSearch.formData"
+              :field="item.field"
               :tag="item.tag"
               :config="item.config"
               :childrens="item.childrens"

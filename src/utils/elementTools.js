@@ -150,10 +150,13 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
   })
 }
 
-export const formTitle = (title, formItemClass) => {
+export const formTitle = (title, config = {}) => {
   return {
     tag: 'div',
-    formItemClass: ['form-is-full', 'form-title', formItemClass],
+    config: {
+      ...config,
+      formItemClass: 'form-is-full form-title' + (config.formItemClass ? ` ${config.formItemClass}` : '')
+    },
     childrens: title
   }
 }

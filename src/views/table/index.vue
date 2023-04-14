@@ -10,7 +10,7 @@
 
 <script>
 import { changeFieldsByProp, formField, formFieldGroup, generateBtns } from "@/utils"
-import { sex } from '@/libs/options'
+import { sex, orgType } from '@/libs/options'
 import Add from './add'
 import Detail from './detail'
 export default {
@@ -61,6 +61,10 @@ export default {
             label: "手机号"
           },
           {
+            key: 'supplier.name',
+            label: '厂商'
+          },
+          {
             key: "identityCard",
             label: "身份证"
           },
@@ -68,6 +72,11 @@ export default {
             key: "sex",
             label: "性别",
             options: sex
+          },
+          {
+            key: 'org.type',
+            label: '机构类型',
+            options: orgType
           },
           {
             key: "qq",
@@ -134,7 +143,13 @@ export default {
         mobile: '15717179551',
         identityCard: '123456789123456',
         sex: 1,
-        qq: ['123456789', '123']
+        qq: ['123456789', '123'],
+        supplier: {
+          name: '厂商1'
+        },
+        org: {
+          type: 1
+        }
       },
       {
         userName: 'li2',
@@ -142,7 +157,10 @@ export default {
         mobile: '15717179552',
         identityCard: '123456789123456',
         sex: 2,
-        qq: '123456789'
+        qq: '123456789',
+        supplier: {
+          name: '厂商2'
+        }
       },
       {
         userName: 'li1',

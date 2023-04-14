@@ -6,7 +6,7 @@
 import _ from 'loadsh'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
 import { formField, formFieldGroup, formTitle, changeFieldsByProp } from "@/utils"
-import { sex } from '@/libs/options'
+import { orgType, sex } from '@/libs/options'
 export default {
   props: {
     data: {
@@ -30,7 +30,7 @@ export default {
           identityCard
         ],
         sex: notNull,
-        orgType: notNull,
+        'org.type': notNull,
         // orgId: notNull,
         mobile: [
           notNull,
@@ -39,7 +39,8 @@ export default {
         email: [email, maxLength(60)]
       },
       form: {
-        userName: ''
+        userName: '',
+        org: {}
       },
       fields: [
         formTitle('基础数据'),
@@ -48,7 +49,7 @@ export default {
         formField('mobile', '手机号'),
         formField('identityCard', '身份证'),
         formFieldGroup('sex', '性别', sex, 'RadioGroup'),
-        formFieldGroup('orgType', '机构类型', [{value: '1', label: '系统'}, {value: '2', label: '运营商'}]),
+        formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
         formField('address', '联系地址', 'Input', { props: { type: 'textarea' }, formItemClass: 'form-is-full' })
@@ -70,6 +71,10 @@ export default {
   },
   methods: {
     submit() {
+      const { form } = this.$refs.quickForm.$refs
+      form.validate(valid => {
+        console.log(valid);
+      })
       console.log(this.form);
     }
   }

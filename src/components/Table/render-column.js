@@ -1,3 +1,4 @@
+import { getValueByPath } from '@/utils'
 export default {
   props: {
     renderContent: Function,
@@ -11,11 +12,11 @@ export default {
   methods: {
     filterData() {
       if (this.options) {
-        const val = this.scope.row[this.prop]
+        const val = getValueByPath(this.scope.row, this.prop)
         const find = this.options.find(item => item.value === val) || {}
         return find
       } else {
-        return { label: this.scope.row[this.prop] }
+        return { label: getValueByPath(this.scope.row, this.prop) }
       }
     }
   },
