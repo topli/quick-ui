@@ -1,4 +1,4 @@
-import _ from 'loadsh'
+import { merge } from 'loadsh'
 import { MessageBox } from 'element-ui'
 
 // ----------------- 确认框 ---------------
@@ -10,7 +10,7 @@ export const deleteConfirm = function(content = '此操作将删除此数据, �
 }
 // 确认提示
 export const confirm = function(content, title = '提示', config = {}) {
-  return MessageBox.confirm(content, title, _.merge({
+  return MessageBox.confirm(content, title, merge({
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import _ from 'loadsh'
+import { cloneDeep } from 'loadsh'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
 import { formField, formFieldGroup, formTitle, changeFieldsByProp } from "@/utils"
 import { orgType, sex } from '@/libs/options'
@@ -62,7 +62,7 @@ export default {
   },
   created() {
     if (this.data) {
-      this.form = _.cloneDeep(this.data)
+      this.form = cloneDeep(this.data)
       changeFieldsByProp(this.fields, 'userName', { config: { props: { disabled: true } } }) // 设置item props属性
       // 编辑时不验证
       this.rules.identityCard = {}

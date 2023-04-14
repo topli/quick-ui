@@ -1,9 +1,9 @@
-import _ from 'loadsh'
+import { merge, cloneDeep } from 'loadsh'
 import { Select } from 'element-ui'
 
 export default {
-  props: _.merge(
-    _.cloneDeep(Select.props),
+  props: merge(
+    cloneDeep(Select.props),
     {
       options: {
         type: Array,
@@ -50,7 +50,7 @@ export default {
     if (this.value && this.remote) {
       this.remoteFunction('')
     } else {
-      this.showOptions = _.cloneDeep(this.options)
+      this.showOptions = cloneDeep(this.options)
     }
   },
   methods: {
@@ -94,7 +94,7 @@ export default {
       {
         props: { ...this._props, remoteMethod: this.remoteFunction },
         class: 'qk-select',
-        on: _.merge(this.$listeners, { focus: () => { this.selectFoucs() } })
+        on: merge(this.$listeners, { focus: () => { this.selectFoucs() } })
       },
       this.showOptions.map(item => {
         return h(

@@ -1,6 +1,6 @@
 import { setValueByPath, getValueByPath, getObjType } from '@/utils'
 import { valueEquals } from 'element-ui/src/utils/util'
-import _ from 'loadsh'
+import { merge, isEmpty } from 'loadsh'
 
 export default {
   name: 'QkDynamic',
@@ -53,7 +53,7 @@ export default {
       }
     }
     let childrens = null
-    if (!_.isEmpty(this.childrens)) {
+    if (!isEmpty(this.childrens)) {
       if (Array.isArray(this.childrens)) {
         childrens = []
         for (let i = 0; i < this.childrens.length; i++) {
@@ -66,7 +66,7 @@ export default {
     }
     return h(
       this.tag,
-      _.merge(defaultConfig, this.config),
+      merge(defaultConfig, this.config),
       childrens || null
     )
   }

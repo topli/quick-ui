@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import _ from 'loadsh'
+import { cloneDeep, mergeWith, merge, isArray, debounce } from 'loadsh'
 import { elComponentNames } from './dict'
 
 /**
@@ -8,7 +8,7 @@ import { elComponentNames } from './dict'
  */
 const setChildrens = function (childrens) {
   const fieldObj = this
-  const newChildrens = _.cloneDeep(hanlderChildrens(childrens, fieldObj.tag))
+  const newChildrens = cloneDeep(hanlderChildrens(childrens, fieldObj.tag))
   this.childrens = newChildrens
 }
 /**
@@ -17,7 +17,7 @@ const setChildrens = function (childrens) {
  */
 const setProps = function (props) {
   const fieldObj = this
-  const newFieldObj = _.mergeWith(fieldObj.config.props, props, customizer)
+  const newFieldObj = mergeWith(fieldObj.config.props, props, customizer)
   this.config.props = newFieldObj
 }
 
@@ -27,7 +27,7 @@ const setProps = function (props) {
  */
 const setOn = function (on) {
   const fieldObj = this
-  const newFieldObj = _.mergeWith(fieldObj.config.on, on, customizer)
+  const newFieldObj = mergeWith(fieldObj.config.on, on, customizer)
   this.config.on = newFieldObj
 }
 
@@ -71,7 +71,7 @@ const hanlderChildrens = (childrens, parentTag) => {
     default:
       break;
   }
-  return childrens ? _.cloneDeep(childrens).map(item => {
+  return childrens ? cloneDeep(childrens).map(item => {
     item.tag = childTag
     if (childTag === 'el-radio') {
       item.props = { label: item.value }
@@ -105,7 +105,7 @@ const hanlderConfig = (config, tag, label) => {
 }
 
 const customizer = (obj, src) =>{
-  if (_.isArray(src)) {
+  if (isArray(src)) {
     return src
   }
 }
@@ -125,7 +125,7 @@ export const formField = (field, label, tag = 'Input', config = {}) => {
     tag: t,
     field,
     label,
-    config: _.merge({attrs, props}, config)
+    config: merge({attrs, props}, config)
   })
 }
 /**
@@ -146,7 +146,7 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
     field,
     label,
     childrens: hanlderChildrens(childrens, t),
-    config: _.merge({attrs, props }, config)
+    config: merge({attrs, props }, config)
   })
 }
 
@@ -168,9 +168,9 @@ export const formTitle = (title, config = {}) => {
  */
 export const changeFieldsByIndex = (fields, index, newField) => {
   if (newField.childrens) {
-    newField.childrens = _.cloneDeep(hanlderChildrens(newField.childrens, fields[index].tag))
+    newField.childrens = cloneDeep(hanlderChildrens(newField.childrens, fields[index].tag))
   }
-  Vue.set(fields, index, _.mergeWith(fields[index], newField, customizer))
+  Vue.set(fields, index, mergeWith(fields[index], newField, customizer))
 }
 
 /**
@@ -192,7 +192,7 @@ export const generateBtns = (h, params, buttons) => {
       {
         style: item.style,
         on: {
-          click: _.debounce(() => {
+          click: debounce(() => {
             if (!item.click) {
               console.error(`click event is not undefined`);
               return

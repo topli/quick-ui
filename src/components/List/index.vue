@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import _ from "loadsh";
+import { merge } from "loadsh";
 export default {
   name: 'QkList',
   props: {
@@ -103,7 +103,7 @@ export default {
           btns: [],
           pages: {},
         };
-        this.listSearch = _.merge(val);
+        this.listSearch = merge(val);
       },
       deep: true,
       immediate: true,
@@ -111,7 +111,7 @@ export default {
     page: {
       handler: function (val) {
         this.listPage = {}
-        this.listPage = _.merge(val)
+        this.listPage = merge(val)
       },
       deep: true,
       immediate: true,
@@ -154,7 +154,7 @@ export default {
       this.$emit("on-checked", val);
     },
     handlerProps(props) {
-      return _.merge(
+      return merge(
         {
           index: true,
           selection: false,
