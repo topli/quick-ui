@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   data() {
     return {
@@ -35,7 +36,7 @@ export default {
         return
       }
       // 挂载内容
-      const Components = window.Vue.extend(this.components)
+      const Components = Vue.extend(this.components)
       this.doms = new Components({
         el: document.getElementById('dialog-box'),
         propsData: this.props,

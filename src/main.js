@@ -5,9 +5,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/packages/theme-chalk/lib/index.css'
 
 // import QuickUI from '@c'
-import QuickUI from '@/components/index.js'
-// import QuickUI from '../lib/incar-quick-ui.common.js'
-// import '../lib/incar-quick-ui.css'
+// import QuickUI from '@/components/index.js'
+import QuickUI from '../lib/incar-quick-ui.umd.js'
+import '../lib/incar-quick-ui.css'
 
 import router from '@/router'
 

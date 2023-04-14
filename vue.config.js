@@ -1,5 +1,4 @@
 const { defineConfig } = require('@vue/cli-service')
-
 module.exports = defineConfig({
   productionSourceMap: false,
   transpileDependencies: true,
@@ -11,10 +10,10 @@ module.exports = defineConfig({
         '@c': '@/components'
       }
     },
-    externals: {
-      vue: 'Vue',
-      lodash: '_',
-      'element-ui': 'ELEMENT'
-    }
+    externals: process.env.NODE_ENV === 'production' ? {
+      vue: 'vue',
+      lodash: 'lodash',
+      'element-ui': "element-ui"
+    } : {}
   }
 })

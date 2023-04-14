@@ -1,3 +1,4 @@
+import vue from 'vue'
 // 此组件库依赖 element-ui
 import QkDynamic from './Dynamic'
 import QkTable from './Table'
