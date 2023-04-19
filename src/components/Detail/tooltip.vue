@@ -30,8 +30,16 @@ export default {
       showTooltip: false
     }
   },
-  mounted() {
-    this.compute()
+  watch: {
+    content: {
+      handler: function(val) {
+        setTimeout(() => {
+          this.compute()
+        }, 0);
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
     compute() {
@@ -51,7 +59,7 @@ export default {
   width: 100%;
   padding: 10px;
   > div {
-    // word-break: keep-all;
+    word-break: keep-all;
   }
   &-content {
     max-width: 350px;

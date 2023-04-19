@@ -141,9 +141,9 @@ export default {
         userName: 'li1',
         name: '李1',
         mobile: '15717179551',
-        identityCard: '123456789123456',
+        identityCard: '1234567891223231233456',
         sex: 1,
-        qq: ['123456789', '123'],
+        qq: ['123456789', '123', '123312312323'],
         supplier: {
           name: '厂商1'
         },
@@ -168,7 +168,7 @@ export default {
         mobile: '15717179551',
         identityCard: '123456789123456',
         sex: 1,
-        qq: ['123456789', '123']
+        qq: ['123456789', '123', '123312312323']
       },
       {
         userName: 'li2',

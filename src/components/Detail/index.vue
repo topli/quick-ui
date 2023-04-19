@@ -1,11 +1,11 @@
 <template>
   <el-scrollbar class="qk-detail-scrollbar">
-    <div :class="detailClass" class="qk-detail">
-      <div v-for="col in columns" :key="col.key" :class="[col.full ? 'qk-detail-item-full' : '']" class="qk-detail-item">
+    <div ref="detailWrapper" class="qk-detail">
+      <div v-for="col in columns" :key="col.key" :style="itemStyle(col)" class="qk-detail-item">
         <div :style="labelStyle" class="qk-detail-item-label">
           {{ getLabel(col.key) }}
         </div>
-        <div :style="textStyle" class="qk-detail-item-text">
+        <div :style="contentStyle" class="qk-detail-item-content">
           <DetailTooltip :content="getText(col)" :filter="col.filter" />
         </div>
       </div>
@@ -42,43 +42,44 @@
           return []
         }
       },
+      split: {
+        type: [String, Number],
+        default: 2
+      },
       labelWidth: {
-        type: String,
-        default: () => {
-          return '100px'
-        }
+        type: [String, Number],
+        default: 100
       }
     },
     data() {
       return {
         colMap: null,
-        splitNum: 2
+        itemWidth: 0
       }
     },
     computed: {
-      detailClass() {
-        return `split-${this.splitNum}`
-      },
-      labelStyle() {
-        let width = 100
-        if (typeof this.labelWidth === 'string') {
-          if (isNaN(Number(this.labelWidth))) {
-            width = this.labelWidth
-          } else {
-            width = this.labelWidth + 'px'
+      itemStyle() {
+        return function (col) {
+          let width = this.itemWidth
+          if (col.colSpan) {
+            width = col.colSpan * this.itemWidth
+          }
+          return {
+            width: width + '%'
           }
         }
-        if (typeof this.labelWidth === 'number') {
-          width = this.labelWidth + 'px'
-        }
+      },
+      labelStyle() {
+        let width = this.convertWidth(this.labelWidth)
         return {
           width,
           minWidth: width
         }
       },
-      textStyle() {
+      contentStyle() {
+        let width = this.convertWidth(this.labelWidth)
         return {
-          width: `calc(100% - ${this.labelWidth})`
+          width: `calc(100% - ${width})`
         }
       }
     },
@@ -86,11 +87,24 @@
       this.colMap = getMapKeys(this.columns, 'key')
     },
     mounted() {
-      if (this.$el.clientWidth > 1200) {
-        this.splitNum = 3
-      }
+      this.computeItemWidth()
     },
     methods: {
+      computeItemWidth() {
+        this.itemWidth = 100 / this.split
+      },
+      convertWidth (width) {
+        if (typeof width === 'string') {
+          if (isNaN(Number(width))) {
+            return width
+          } else {
+            return width + 'px'
+          }
+        }
+        if (typeof width === 'number') {
+          return width + 'px'
+        }
+      },
       getLabel(key) {
         const item = this.colMap.get(key)
         if (item) {
@@ -138,50 +152,33 @@
     }
   }
   .qk-detail {
-    height: 100%;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid #E7EAEA;
-
-    &.split-2 {
-      .qk-detail-item {
-        width: 50%;
-        display: inline-block;
-      }
-    }
-
     &-item {
-      height: 100%;
       border: 1px solid #E7EAEA;
       display: flex;
       align-items: center;
-
-      >div {
-        display: inline-flex;
-        justify-content: left;
-        align-items: center;
+      &:last-child{
+        flex: 1;
       }
-
       &-label {
         height: 100%;
         padding: 10px;
-        text-align: center;
+        text-align: left;
         background-color: #F8F8F9;
         color: #889090;
         font-size: 14px;
       }
 
-      &-text {
+      &-content {
+        height: 100%;
+        flex: 1;
         position: relative;
         color: #2D3B47;
-        height: 100%;
         text-align: left;
         font-size: 14px;
-      }
-
-      &-full {
-        width: 100%!important;
       }
     }
   }

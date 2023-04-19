@@ -11,7 +11,7 @@ module.exports = defineConfig({
       }
     },
     externals: process.env.NODE_ENV === 'production' ? {
-      vue: 'vue',
+      // vue: 'vue',
       lodash: 'lodash',
       'element-ui': "element-ui"
     } : {}

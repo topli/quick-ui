@@ -1,5 +1,5 @@
 <template>
-  <QkDetail :columns="columns" :data="data"></QkDetail>
+  <QkDetail :columns="columns" :data="data" split="3"></QkDetail>
 </template>
 
 <script>
@@ -16,178 +16,175 @@ export default {
       columns: [
           {
             key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
             label: "用户名",
-            full: true
+            colSpan: 2
           },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "userName",
-            label: "用户名"
-          },
-          {
-            key: "name",
-            label: "姓名",
-            full: true
-          },
-          {
-            key: "mobile",
-            label: "手机号"
-          },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名",
+          //   full: true
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "userName",
+          //   label: "用户名"
+          // },
+          // {
+          //   key: "name",
+          //   label: "姓名",
+          //   full: true
+          // },
+          // {
+          //   key: "mobile",
+          //   label: "手机号"
+          // },
           {
             key: "identityCard",
             label: "身份证"
           },
           {
-            key: "sex",
-            label: "性别",
-            options: sex
-          },
-          {
             key: "qq",
-            label: "qq"
+            label: "qq",
+            colSpan: 2,
           },
           {
             key: "email",
@@ -195,8 +192,12 @@ export default {
           },
           {
             key: "address",
-            label: "联系地址",
-            full: true
+            label: "联系地址"
+          },
+          {
+            key: "sex",
+            label: "性别",
+            options: sex
           }
         ]
     }
