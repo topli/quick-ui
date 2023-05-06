@@ -6,9 +6,96 @@
 
 编写某些组件用到了render函数&jsx的方式，不熟悉的小朋友可以看看vue官方文档里的[渲染函数 & JSX]( https://v2.cn.vuejs.org/v2/guide/render-function.html#%E6%B7%B1%E5%85%A5%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1)
 
+
+
+------
+
+
+
 ## UI组件
 
-### QkForm表单组件
+
+
+### Dynamic
+
+Form组件使用了该组件，用于定义各种类型的表单
+
+```js
+Dynamic = ({
+  name: 'QkDynamic',
+  props: {
+    tag: [String, Object],
+    model: Object,
+    field: [String],
+    config: Object,
+    value: [String, Number, Object, Array, Date],
+    childrens: [Array, String]
+  }
+```
+
+#### 属性
+
+  **tag**: [String, Object] 
+
+​	string只能设置全局组件、Object可以设置引入自定义组件
+
+  **model**: Object
+
+​	双向绑定的数据，类似于vue的v-model
+
+  **field**: [String]
+
+​	字段key
+
+  **config**: Object
+
+​	config 包含render函数所有配置，也可以设置自定义配置
+
+  **value**: [String, Number, Object, Array, Date]
+
+​	绑定值
+
+  **childrens**: [Array, String]
+
+构建子级用  childrens 是数组 配置项参考Dynamic配置  childrens是字符串直接显示文本
+
+ 
+
+#### 用法
+
+```js
+<QkDynamic
+    :model="listSearch.formData"
+    :field="item.field"
+    :tag="item.tag"
+    :config="item.config"
+    :childrens="item.childrens"
+/>
+```
+
+
+
+Table
+
+Search
+
+List
+
+Form
+
+Detail
+
+TabDetail
+
+Text
+
+
+
+------
+
+
+
+### Form表单组件
 
 ```js
 <QkForm
@@ -22,7 +109,7 @@
 />
 ```
 
-#### QkForm表单组件的属性
+#### Form表单组件的属性
 
 **form-item-split**：一行的列数
 
@@ -175,7 +262,11 @@ export default {
 
 
 
-### QkList组件
+------
+
+
+
+### List组件
 
 ```js
 <QkList
@@ -187,7 +278,7 @@ export default {
   />
 ```
 
-#### QkList列表组件属性
+#### List列表组件属性
 
 **loading**：加载动画
 
@@ -390,22 +481,6 @@ export default {
             label: "用户名"
           },
           {
-            key: "name",
-            label: "姓名"
-          },
-          {
-            key: "mobile",
-            label: "手机号"
-          },
-          {
-            key: 'supplier.name',
-            label: '厂商'
-          },
-          {
-            key: "identityCard",
-            label: "身份证"
-          },
-          {
             key: "sex",
             label: "性别",
             options: sex
@@ -500,190 +575,6 @@ export default {
         }
       },
       {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123', '123312312323']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
         userName: 'li2',
         name: '李2',
         mobile: '15717179552',
@@ -750,26 +641,53 @@ export default {
 
 
 
-### qkDialog模态框组件
+------
 
-自定义指令方法使用
+
+
+### qkDialog模态框插件
+
+通过在 Vue 原型上添加 `$qkDialog` 方法，我们可以在组件中通过 `this.$qkDialog()` 方式来打开 `qkDialog` 弹窗。
+
+#### 使用
 
 ```js
-showDetail(row) {
-    this.$qkDialog({
-        title: '详情', // 标题
-        components: Detail, // 组件
-        props: { data: row }, // 数据项，这里传入的是详情的数据
-        width: 690 // 模态框宽度
-    })
+this.$qkDialog({
+    title: '详情', // 标题
+    components: Detail, // 组件
+    props: { data: row }, // 数据项，这里传入的是详情的数据
+    width: 690 // 模态框宽度，
+    onAction: (action) => {
+        // 新增完成后执行操作
+        // 刷新列表
+        if (action === 'success') {
+            this.onSearch()  // 执行刷新列表方法
+        }
+    }
+})
+```
+
+Tip：如果需要定义提交表单完成之后执行的方法，可以在 $qkDialog 方法中传入onAction方法，确认提交表单成功后执行 `this.onAction('success')` ，所以定义的时候可以这样定义：
+
+```js
+onAction: (action) => {
+    // 新增完成后执行操作
+    // 刷新列表
+    if (action === 'success') {
+        this.onSearch()  // 执行刷新列表方法
+    }
 }
 ```
 
-代码当中已经绑定到vue的prototype上 `Vue.prototype.$qkDialog = QkDialog`，所以在你的代码组件中随便用
+如果需要在组件中关闭弹框，可以调用 onClose 方法
 
 
 
-### QkDetail详情组件
+------
+
+
+
+### Detail详情组件
 
 `<QkDetail :columns="columns" :data="data" split="3"></QkDetail>`
 
@@ -844,9 +762,21 @@ export default {
 
 node版本，npm版本，yarn版本，vue版本等
 
+
+
+------
+
+
+
 ## 最佳实践
 
 待补充
+
+
+
+------
+
+
 
 ## 浏览器兼容性
 

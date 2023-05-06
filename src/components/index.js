@@ -28,6 +28,9 @@ const components = [
 ];
 
 const install = function (Vue, config = {}) {
+  /**
+   * 这里定义install方法，该方法接受Vue实例和选项作为参数，并将$qkDialog、$qkUtils、$qkConfig方法添加到Vue原型上
+  */
   // 静态方法
   if (install.installed) return
   install.installed = true
