@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+.theme-default-content, .page-nav {
+  max-width: 80%!important;
+}
+.demo-list {
+  height: 500px;
+  .qk-list {
+    padding: 0;
+  }
+}
+.options-table {
+  font-size: 14px;
+  display: table!important;
+  width: 100%;
+  border-color: white;
+  thead {
+    display: table-header-group;
+    color: #909399;
+  }
+  tr {
+    border: 0px;
+    display: table-row;
+  }
+  td, th {
+    border: 0px;
+    text-align: left;
+    border-bottom: 1px solid #dcdfe6;
+    padding: 15px 15px 15px 10px;
+    line-height: 1.5;
+  }
+  tr:nth-child(2n) {
+    background-color: white;
+  }
+  & th:last-child {
+    border-right: none;
+  }
+  & td:last-child {
+    border-right: none;
+  }
+  & tr:last-child td {
+    border-bottom: 1px solid #dcdfe6;
+  }
+}
