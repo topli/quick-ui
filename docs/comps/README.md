@@ -13,11 +13,6 @@ yarn add incar-quick-ui -S
 ## 使用
 
 ```shell
-# 安装依赖
-npm i incar-quick-ui -S | yarn add incar-quick-ui -S
-```
-
-```shell
 # main.js
 import QuickUI from 'incar-quick-ui'
 # iconfont 引入的字体库
