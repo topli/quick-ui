@@ -71,7 +71,7 @@
       <tr>
         <td>onAction</td>
         <td>回调函数 参数为内容组件调用onAction时传入的参数</td>
-        <td>function</td>
+        <td>Function(action)</td>
         <td>—</td>
         <td>—</td>
       </tr>

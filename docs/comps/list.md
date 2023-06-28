@@ -469,13 +469,6 @@
       <td>—</td>
     </tr>
     <tr>
-      <td>page</td>
-      <td>分页配置</td>
-      <td>Object</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
       <td>onSearch</td>
       <td>查询方法</td>
       <td>Function</td>
