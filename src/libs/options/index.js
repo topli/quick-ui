@@ -4,5 +4,5 @@ export const sex = [
 ]
 export const orgType = [
   {value: 1, label: '系统', type: 1},
-  {value: 2, label: '供应商', type: 2}
+  {value: 2, label: '供应商', type: 4}
 ]
