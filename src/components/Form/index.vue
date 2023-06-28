@@ -1,5 +1,5 @@
 <template>
-  <div class="qk-dialog-form-wrapper">
+  <div v-loading="loading" class="qk-dialog-form-wrapper">
     <el-scrollbar>
       <div class="qk-dialog-form-body">
         <slot name="body">
@@ -8,11 +8,10 @@
               v-for="item in filterItems"
               :class="[
                 formItemSplit ? `form-item-split-${formItemSplit}` : '',
-                item.config.formItemClass
+                (item.config.formItemProps ? item.config.formItemProps.class : '')
               ]"
               v-bind="item.config.formItemProps"
               :label="showLabel(item)"
-              :label-width="item.config.formItemLabelWidth"
               :prop="item.field"
               :key="item.field">
               <QkDynamic :model="$attrs.model" :field="item.field" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>

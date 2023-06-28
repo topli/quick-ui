@@ -52,7 +52,7 @@ export default {
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
-        formField('address', '联系地址', 'Input', { props: { type: 'textarea' }, formItemClass: 'form-is-full' })
+        formField('address', '联系地址', 'Input', { formItemProps: { class: 'form-is-full' }, props: { type: 'textarea' } })
       ],
       btns: [
         { text: '取消', click: () => this.onClose() },
