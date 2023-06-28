@@ -98,7 +98,7 @@
       <td>—</td>
     </tr>
     <tr>
-      <td>elOptions</td>
+      <td>其他参数</td>
       <td>支持ElementUI Table组件其他参数</td>
       <td>any</td>
       <td>—</td>
@@ -155,7 +155,7 @@
       <td>—</td>
     </tr>
     <tr>
-      <td>elOptions</td>
+      <td>其他参数</td>
       <td>支持ElementUI TableColumns组件其他参数</td>
       <td>any</td>
       <td>—</td>

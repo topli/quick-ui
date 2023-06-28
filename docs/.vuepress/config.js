@@ -12,7 +12,7 @@ module.exports = {
         link: '/comps/'
       }
     ],
-    sidebar: ['/comps/', '/comps/dialog.md', '/comps/table.md', '/comps/list.md']
+    sidebar: ['/comps/', '/comps/table.md', '/comps/list.md', '/comps/form.md', '/comps/dialog.md']
   },
   head: [],
   plugins: ['demo-container'], // 配置插件
