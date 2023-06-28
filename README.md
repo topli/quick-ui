@@ -2,6 +2,18 @@
 
 <!-- 在线文档 [https://hsian.github.io/vc-dist/index.html#/component/button](https://hsian.github.io/vc-dist/index.html#/component/button) -->
 
+## 文档
+npm run docs:dev | yarn docs:dev
+
+## 开发调试
+npm run serve | yarn serve
+
+## 打包
+npm run lib | yarn lib
+
+## 发布npm
+npm publish
+
 ## 使用
 
 ```shell
@@ -12,10 +24,9 @@ npm i incar-quick-ui -S | yarn add incar-quick-ui -S
 ```shell
 # main.js
 import QuickUI from 'incar-quick-ui'
-
+# iconfont 引入的字体库
 Vue.use(QuickUI, { iconfont: 'qk-icon', searchBtnText: true })
 ```
-
 
 ## 关于通用组件库 ##
 - 组件库依赖(高度依赖element-ui)
