@@ -8,11 +8,15 @@ module.exports = {
   themeConfig: {
     nav: [ // 配置顶部导航栏
       {
+        text: '首页',
+        link: '/'
+      },
+      {
         text: '组件',
         link: '/comps/'
       }
     ],
-    sidebar: ['/comps/', '/comps/table.md', '/comps/list.md', '/comps/form.md', '/comps/dialog.md']
+    sidebar: ['/comps/', '/comps/table.md', '/comps/list.md', '/comps/form.md', '/comps/dialog.md', '/comps/detail.md']
   },
   head: [],
   plugins: ['demo-container'], // 配置插件
