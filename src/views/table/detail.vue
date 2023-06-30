@@ -1,5 +1,5 @@
 <template>
-  <QkDetail :columns="columns" :data="data" split="3"></QkDetail>
+  <QkDetail :columns="columns" :data="data" split="2"></QkDetail>
 </template>
 
 <script>
@@ -19,164 +19,118 @@ export default {
             label: "用户名",
             colSpan: 2
           },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名",
-          //   full: true
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "userName",
-          //   label: "用户名"
-          // },
-          // {
-          //   key: "name",
-          //   label: "姓名",
-          //   full: true
-          // },
-          // {
-          //   key: "mobile",
-          //   label: "手机号"
-          // },
+          {
+            key: "mobile",
+            label: "手机号"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
+          {
+            key: "identityCard",
+            label: "身份证"
+          },
           {
             key: "identityCard",
             label: "身份证"
@@ -184,10 +138,10 @@ export default {
           {
             key: "qq",
             label: "qq",
-            colSpan: 2,
           },
           {
             key: "email",
+            colSpan: 2,
             label: "电子邮箱"
           },
           {

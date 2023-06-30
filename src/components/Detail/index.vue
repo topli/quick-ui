@@ -1,12 +1,14 @@
 <template>
   <el-scrollbar class="qk-detail-scrollbar">
     <div ref="detailWrapper" class="qk-detail">
-      <div v-for="col in columns" :key="col.key" :style="itemStyle(col)" class="qk-detail-item">
-        <div :style="labelStyle" class="qk-detail-item-label">
-          {{ getLabel(col.key) }}
-        </div>
-        <div :style="contentStyle" class="qk-detail-item-content">
-          <DetailTooltip :content="getText(col)" :filter="col.filter" />
+      <div class="qk-detail-wrapper">
+        <div v-for="col in columns" :key="col.key" :style="itemStyle(col)" class="qk-detail-item">
+          <div :style="labelStyle" class="qk-detail-item-label">
+            {{ getLabel(col.key) }}
+          </div>
+          <div :style="contentStyle" class="qk-detail-item-content">
+            <DetailTooltip :content="getText(col)" :filter="col.filter" />
+          </div>
         </div>
       </div>
     </div>
@@ -153,16 +155,21 @@
   }
   .qk-detail {
     padding: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #E7EAEA;
-    &-item {
+    &-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 100%;
       border: 1px solid #E7EAEA;
+      border-left: 0;
+      border-bottom: 0;
+    }
+    &-item {
+      border-left: 1px solid #E7EAEA;
+      border-bottom: 1px solid #E7EAEA;
       display: flex;
       align-items: center;
-      &:last-child{
-        flex: 1;
-      }
+      flex-grow: 1;
       &-label {
         height: 100%;
         padding: 10px;
