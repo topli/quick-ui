@@ -14,7 +14,7 @@ import * as QkUtils from '../utils/index'
 
 import * as directives from '../directives'
 
-import '../styles/element-ui.scss'
+import '../styles/index.scss'
 
 const components = [
   QkDynamic,
@@ -38,6 +38,7 @@ const install = function (Vue, config = {}) {
 
   Object.keys(directives).forEach(key => {
     if (directives[key])
+      console.log(key);
       Vue.directive(key, directives[key])
   })
   

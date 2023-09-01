@@ -1,25 +1,26 @@
 <template>
   <div class="qk-search">
     <div ref="qkSearchForm" :style="style" class="qk-search-form" @keyup.enter="onSearch">
-      <slot/>
+      <slot></slot>
     </div>
     <div ref="qkSearchBtns" class="qk-search-btns">
       <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
       <el-button class="qk-search-btn" :icon="searchBtnText ? '' : 'el-icon-search'" type="primary" round @click="onSearch">
         {{ searchBtnText ? '查询' : ''}}
       </el-button>
-      <slot name="btns"/>
+      <slot name="btns"></slot>
     </div>
   </div>
 </template>
 
 <script>
+import { isNumber } from 'loadsh'
 export default {
   name: 'QkSearch',
   props: {
-    paddingRight: {
-      type: String,
-      default: '135'
+    height: {
+      type: [String, Number],
+      default: 52
     },
     showText: {
       type: Boolean,
@@ -36,17 +37,13 @@ export default {
   },
   computed: {
     showMore() {
-      return this.formHeight > this.btnsHeight + 12 // 12是form-item的margin-bottom
+      return this.formHeight > this.height
     },
     style() {
-      const defStyle = {}
-      if (this.toggleOpen) {
-        defStyle.height = this.formHeight + 'px'
-      } else {
-        defStyle.height = this.btnsHeight + 'px'
+      const defStyle = {
+        height: isNumber(this.height) ? (this.height + 'px') : this.height
       }
-      defStyle.paddingRight = this.btnsWidth + 'px'
-      return defStyle
+      return this.toggleOpen ? { height: this.formHeight + 'px' } : defStyle
     },
     toggleFromIcon() {
       return this.toggleOpen ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
@@ -74,14 +71,10 @@ export default {
   methods: {
     getFormHeight() {
       this.$nextTick(() => {
-        if (this.$slots.default && this.$slots.default[0]) {
+        if (this.$slots.default) {
           this.formHeight = this.$slots.default[0].elm.clientHeight
         }
       })
-    },
-    getBtnsWidht() {
-      this.btnsWidth = this.$refs.qkSearchBtns.clientWidth
-      this.btnsHeight = this.$refs.qkSearchBtns.clientHeight
     },
     openSearchFun() {
       this.toggleOpen = !this.toggleOpen
@@ -97,7 +90,7 @@ export default {
   .qk-search {
     position: relative;
     width: 100%;
-    margin: 5px 0;
+    display: flex;
     &-form {
       min-width: 135px;
       overflow: hidden;
@@ -105,10 +98,15 @@ export default {
       -moz-transition: height 0.3s; /* Firefox 4 */
       -webkit-transition: height 0.3s; /* Safari 和 Chrome */
       -o-transition: height 0.3s; /* Opera */
+      flex: 1;
+      .el-form {
+        .el-form-item {
+          margin-top: 10px;
+        }
+      }
     }
     &-btns {
-      position: absolute;
-      padding: 0 10px;
+      padding: 10px;
       top: 0;
       right: 0;
       .el-dropdown {

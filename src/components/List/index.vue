@@ -1,9 +1,9 @@
 <template>
   <div class="qk-list">
-    <QkSearch v-if="search" v-bind="listSearch" @on-search="onSearch">
+    <QkSearch v-if="search" @on-search="onSearch">
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
-          <el-form-item v-form-item-tooltip="item.label" :key="item.field">
+          <el-form-item :key="item.field">
             <QkDynamic :model="listSearch.formData" :field="item.field" :tag="item.tag" :config="item.config"
               :childrens="item.childrens" />
           </el-form-item>

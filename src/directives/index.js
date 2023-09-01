@@ -3,3 +3,4 @@
  */
 
 export * from './formItemTooltip.js'
+export * from './qkTooltip'

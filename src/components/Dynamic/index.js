@@ -49,8 +49,20 @@ export default {
             setValueByPath(this.model, this.field, val)
           }
           this.$emit('change', val)
+        },
+        focus: () => {
+          this.$emit('focus')
+        },
+        blur: () => {
+          this.$emit('blur')
         }
-      }
+      },
+      directives: [
+        {
+          name: 'qkTooltip',
+          value: this.config.attrs.placeholder
+        }
+      ]
     }
     let childrens = null
     if (!isEmpty(this.childrens)) {

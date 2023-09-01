@@ -63,6 +63,7 @@ export default {
   name: 'QkTable',
   components: { renderColumn },
   props: {
+    data: { type: Array, default: () => [] },
     selection: { type: Boolean, default: false }, // 显示/隐藏勾选框
     index: { type: Boolean, default: false }, // 显示/隐藏序号
     columns: { type: Array, required: true }, // 列配置
@@ -72,28 +73,18 @@ export default {
   },
   data() {
     return {
-      tableData: [],
       selectionChange: () => {}
     }
   },
   computed: {
     tableLoading() {
       return this.loading
+    },
+    tableData() {
+      return this.data
     }
   },
   watch: {
-    '$attrs.data': {
-      handler: function(val) {
-        this.tableData = val
-        if (this.selection) {
-          this.$nextTick(() => {
-            this.setDefaultSelections()
-          })
-        }
-      },
-      deep: true,
-      immediate: true
-    },
     defaultSelections: {
       handler: function() {
         if (this.selection) {
