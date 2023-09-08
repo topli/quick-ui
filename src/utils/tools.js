@@ -1,6 +1,6 @@
 import Vue from "vue"
 
-const dateFormat = (str, fmt = 'yyyy-MM-dd HH:mm:ss') => {
+export const dateFormat = (str, fmt = 'yyyy-MM-dd HH:mm:ss') => {
   if (!str && isNaN(Date.parse(str))) return ''
   const date = new Date(str)
   var o = {

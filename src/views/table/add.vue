@@ -1,5 +1,5 @@
 <template>
-  <QkForm ref="quickForm" form-item-split="2" :rules="rules" :model="form" :fields="fields" :btns="btns" label-width="100px" />
+  <QkForm ref="quickForm" label-position="top" :rules="rules" :model="form" :fields="fields" :btns="btns" label-width="100px" />
 </template>
 
 <script>
@@ -7,6 +7,11 @@ import { cloneDeep } from 'loadsh'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
 import { formField, formFieldGroup, formTitle, changeFieldsByProp } from "@/utils"
 import { orgType, sex } from '@/libs/options'
+
+const formItemFull = {
+  formItemProps: { class: 'form-is-full' }
+}
+
 export default {
   props: {
     data: {
@@ -43,7 +48,7 @@ export default {
         org: {}
       },
       fields: [
-        formTitle('基础数据'),
+        formTitle('基础数据', { ...formItemFull }),
         formField('userName', '用户名'),
         formField('name', '姓名'),
         formField('mobile', '手机号'),
@@ -52,7 +57,7 @@ export default {
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
-        formField('address', '联系地址', 'Input', { formItemProps: { class: 'form-is-full' }, props: { type: 'textarea' } })
+        formField('address', '联系地址', 'Input', { ...formItemFull, props: { type: 'textarea' } })
       ],
       btns: [
         { text: '取消', click: () => this.onClose() },

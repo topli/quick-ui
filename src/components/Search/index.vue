@@ -20,7 +20,7 @@ export default {
   props: {
     height: {
       type: [String, Number],
-      default: 52
+      default: 62
     },
     showText: {
       type: Boolean,
@@ -62,7 +62,6 @@ export default {
   },
   mounted() {
     this.getFormHeight()
-    this.getBtnsWidht()
     window.addEventListener('resize', this.getFormHeight)
   },
   beforeDestroy() {

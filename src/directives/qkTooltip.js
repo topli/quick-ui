@@ -8,28 +8,38 @@ const inserted = (el, binding, vNode) => {
   tooltip.innerHTML = binding.value
   tooltip.classList.add('qk-tooltip')
   // 查找输入框
-  const input = el._input = el.querySelector('.el-input__inner')
-  // 获取样式
-  let style = window.getComputedStyle(input, null);
-  el._input_pl = parseFloat(style.getPropertyValue('padding-left'));
+  const input = el._input = el.querySelector('input')
 
-  tooltip.style.left = el._input_pl + 'px'
-  el.appendChild(tooltip)
-  el._focus = () => {
+  const toTop = () => {
     tooltip.style.left = '10px'
     tooltip.style.top = '0'
   }
-  el._blur = () => {
+
+  const toInner = () => {
     setTimeout(() => {
       if (!vNode.child.value && !vNode.child.visible) {
         tooltip.style.left = el._input_pl + 'px'
         tooltip.style.top = ''
-        vNode.child.blur()
+        vNode.child.blur && vNode.child.blur()
       }
     }, 50)
   }
-  context.$on('focus', el._focus)
-  context.$on('blur', el._blur)
+
+  if (input) {
+    // 获取样式
+    let style = window.getComputedStyle(input, null);
+    el._input_pl = parseFloat(style.getPropertyValue('padding-left'));
+    if (vNode.child.value) {
+      toTop()
+    } else {
+      toInner()
+    }
+    el.appendChild(tooltip)
+    el._focus = () => toTop()
+    el._blur = () => toInner()
+    context.$on('focus', el._focus)
+    context.$on('blur', el._blur)
+  }
 }
 const unbind = (el, binding, vNode) => {
   const context = vNode.context;
@@ -43,7 +53,7 @@ const update = (el, binding, vNode) => {
     if (!vNode.child.value && !vNode.child.visible) {
       tooltip.style.left = el._input_pl + 'px'
       tooltip.style.top = ''
-      vNode.child.blur()
+      vNode.child.blur && vNode.child.blur()
     } else {
       tooltip.style.left = '10px'
       tooltip.style.top = '0'

@@ -14,7 +14,8 @@ export default {
     // 绑定值
     value: [String, Number, Object, Array, Date],
     // 构建子级用  childrens 是数组 配置项参考Dynamic配置  childrens是字符串直接显示文本
-    childrens: [Array, String]
+    childrens: [Array, String],
+    tooltip: Boolean
   },
   data() {
     return {}
@@ -33,6 +34,14 @@ export default {
   render(h) {
     let value = getValueByPath(this.model, this.field)
     value = this.hanlderElementValue(value, this.tag)
+
+    const directives = []
+    if (this.tooltip) {
+      directives.push({
+        name: 'qkTooltip',
+        value: this.config.attrs.placeholder
+      })
+    }
     const defaultConfig = {
       props: {
         value: value
@@ -57,12 +66,7 @@ export default {
           this.$emit('blur')
         }
       },
-      directives: [
-        {
-          name: 'qkTooltip',
-          value: this.config.attrs.placeholder
-        }
-      ]
+      directives
     }
     let childrens = null
     if (!isEmpty(this.childrens)) {

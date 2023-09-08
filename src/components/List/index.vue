@@ -4,7 +4,7 @@
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
           <el-form-item :key="item.field">
-            <QkDynamic :model="listSearch.formData" :field="item.field" :tag="item.tag" :config="item.config"
+            <QkDynamic :model="listSearch.formData" tooltip :field="item.field" :tag="item.tag" :config="item.config"
               :childrens="item.childrens" />
           </el-form-item>
         </template>

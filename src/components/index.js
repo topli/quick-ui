@@ -9,6 +9,7 @@ import QkTabDetail from './TabDetail'
 import QkDetail from './Detail'
 import QkText from './Text'
 import QkDialog from './Dialog/index.js'
+import QkDate from './Date'
 
 import * as QkUtils from '../utils/index'
 
@@ -24,7 +25,8 @@ const components = [
   QkForm,
   QkDetail,
   QkTabDetail,
-  QkText
+  QkText,
+  QkDate
 ];
 
 const install = function (Vue, config = {}) {
@@ -38,7 +40,6 @@ const install = function (Vue, config = {}) {
 
   Object.keys(directives).forEach(key => {
     if (directives[key])
-      console.log(key);
       Vue.directive(key, directives[key])
   })
   

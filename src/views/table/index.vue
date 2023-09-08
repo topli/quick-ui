@@ -21,32 +21,27 @@ export default {
       // 搜索条件
       search: {
         formData: {
-          test: []
+          test: [],
+          time: new Date(),
+          timerange: [new Date(), new Date(Date.now() + 565498481)],
+          date: new Date(),
+          daterange: [new Date(), new Date(Date.now() + 565498481)],
+          datetime: new Date(),
+          datetimeRange: [new Date(), new Date(Date.now() + 565498481)],
         },
         fields: [
           // 对象方式
-          { tag: 'el-input', field: 'username', label: '用户名', config: { attrs: { placeholder: '用户名' }, props: { clearable: true }} },
+          // { tag: 'el-input', field: 'username', label: '用户名', config: { attrs: { placeholder: '用户名' }, props: { clearable: true }} },
           // 函数方式 默认渲染el-input标签
           // formField("name", "姓名"),
           formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex", "性别", sex),
           // 函数方式 指定渲染标签
-          // formField("time", "时间", 'DatePicker', { props: { type: 'datetime' }}),
-          // formField("datePickerRange", "日期区间", 'DatePicker', { props: { type: 'datetimerange' }}),
-          // formField("timerange", "时间区间", 'TimePicker'),
+          formField("time", "时间", 'QkDate', { props: { type: 'time', pickerOptions: { minTime: new Date() } }}),
+          formField("timerange", "时间区间", 'QkDate', { props: { type: 'timerange' }}),
+          formField("date", "日期", 'QkDate', { props: { type: 'date' }}),
+          formField("daterange", "日期区间", 'QkDate', { props: { type: 'daterange' }}),
+          formField("datetime", "日期时间", 'QkDate', { props: { type: 'datetime' }}),
+          formField("datetimeRange", "日期时间区间", 'QkDate', { props: { type: 'datetimerange' }}),
           // formFieldGroup('simStatus', 'SIM卡状态', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}]),
           // RadioGroup demo
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'RadioGroup'),
@@ -64,15 +59,18 @@ export default {
         columns: [
           {
             key: "userName",
-            label: "用户名"
+            label: "用户名",
+            width: 100
           },
           {
             key: "name",
-            label: "姓名"
+            label: "姓名",
+            width: 100
           },
           {
             key: "mobile",
-            label: "手机号"
+            label: "手机号",
+            width: 160
           },
           {
             key: 'supplier.name',
@@ -80,7 +78,8 @@ export default {
           },
           {
             key: "identityCard",
-            label: "身份证"
+            label: "身份证",
+            width: 180
           },
           {
             key: "sex",
@@ -94,7 +93,8 @@ export default {
           },
           {
             key: "qq",
-            label: "qq"
+            label: "qq",
+            width: 160
           },
           {
             key: "email",

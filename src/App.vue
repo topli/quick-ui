@@ -12,7 +12,6 @@ export default {
 
 <style lang="scss">
 @import './asset/font/iconfont.css';
-@import '@/styles/index.scss';
 * {
   box-sizing: border-box;
 }
