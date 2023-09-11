@@ -3,18 +3,15 @@
     <el-scrollbar>
       <div class="qk-dialog-form-body">
         <slot name="body">
-          <el-form ref="form" v-bind="$attrs">
+          <el-form ref="form" v-bind="getFormProps" :style="formStyle">
             <el-form-item
               v-for="item in filterItems"
-              :class="[
-                formItemSplit ? `form-item-split-${formItemSplit}` : '',
-                (item.config.formItemProps ? item.config.formItemProps.class : '')
-              ]"
-              v-bind="item.config.formItemProps"
+              v-bind="item.formItemProps"
+              :style="formItemStyle(item.formItemProps)"
               :label="showLabel(item)"
               :prop="item.field"
               :key="item.field">
-              <QkDynamic :model="$attrs.model" :field="item.field" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
+              <QkDynamic :model="$props.model" :field="item.field" :tag="item.tag" :config="item.config" :childrens="item.childrens"/>
             </el-form-item>
           </el-form>
         </slot>
@@ -27,29 +24,50 @@
 </template>
 
 <script>
+import { Form } from 'element-ui'
+import { merge, cloneDeep } from 'lodash'
+// 原Form props
+const orginProps = cloneDeep(Form.props)
+// 自定义props
+const customProps = {
+  fields: {
+    type: Array,
+    default: () => []
+  },
+  btns: {
+    type: Array,
+    default: () => []
+  },
+  column: {
+    type: [String, Number],
+    default: 2
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  }
+}
+
+
 export default {
   name: 'QkForm',
-  props: {
-    fields: {
-      type: Array,
-      default: () => []
-    },
-    btns: {
-      type: Array,
-      default: () => []
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    formItemSplit: {
-      type: [Number, String],
-      default: 1
-    }
-  },
+  props: merge(orginProps, customProps),
   computed: {
     filterItems() {
       return this.fields.filter(item => !!item)
+    },
+    getFormProps() {
+      const keys = Object.keys(Form.props)
+      const newProps = {}
+      keys.forEach(k => {
+        newProps[k] = this.$props[k]
+      })
+      return newProps
+    },
+    formStyle() {
+      return {
+        'grid-template-columns': `repeat(${this.column}, auto)`
+      }
     }
   },
   methods: {
@@ -64,6 +82,18 @@ export default {
         return item.config.attrs.placeholder
       }
       return ''
+    },
+    formItemStyle(formItemProps) {
+      if (!formItemProps) return {}
+      let gridColumnEnd = 1
+      if (formItemProps.span === 'full') {
+        gridColumnEnd = `span ${this.column}`
+      } else {
+        gridColumnEnd = `span ${formItemProps.span}`
+      }
+      return {
+        gridColumnEnd
+      }
     }
   }
 }
@@ -79,8 +109,10 @@ export default {
       }
     }
   .qk-dialog-form-body {
-    padding: 10px 30px 0px 20px;
+    padding: 10px 30px 10px 30px;
     .el-form {
+      display: grid;
+      grid-column-gap: 20px;
       .el-input .el-input__inner,.el-date-editor,.el-select  {
         width: 100%;
       }
@@ -90,26 +122,17 @@ export default {
       
       .el-form-item {
         display: inline-block;
-      }
-      .form-title {
-        .el-form-item__content {
-          margin-left: 0!important;
+        .el-form-item__label {
+          line-height: 1;
         }
       }
-      .form-item-split-1 {
-        width: 100%;
-      }
-      .form-item-split-2 {
-        width: 50%;
-      }
-      .form-item-split-3 {
-        width: 33%;
-      }
-      .form-is-full {
-        display: block;
-        width: 100%;
+      .form-item-title {
+        padding: 8px 0;
+        font-weight: 600;
+        margin-bottom: 6px;
         .el-form-item__content {
-          font-size: 18px;
+          margin-left: 0!important;
+          line-height: 1.5;
         }
       }
     }

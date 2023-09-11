@@ -1,5 +1,5 @@
 <template>
-  <QkForm ref="quickForm" label-position="top" :rules="rules" :model="form" :fields="fields" :btns="btns" label-width="100px" />
+  <QkForm ref="quickForm" label-position="top" column="3" :rules="rules" :model="form" :fields="fields" :btns="btns" />
 </template>
 
 <script>
@@ -8,8 +8,8 @@ import { notNull, userName, lengthRange, identityCard, phone, email, maxLength }
 import { formField, formFieldGroup, formTitle, changeFieldsByProp } from "@/utils"
 import { orgType, sex } from '@/libs/options'
 
-const formItemFull = {
-  formItemProps: { class: 'form-is-full' }
+const full = {
+  span: 'full'
 }
 
 export default {
@@ -48,16 +48,16 @@ export default {
         org: {}
       },
       fields: [
-        formTitle('基础数据', { ...formItemFull }),
+        formTitle('基础数据').setFIP(full),
         formField('userName', '用户名'),
         formField('name', '姓名'),
         formField('mobile', '手机号'),
         formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别', sex, 'RadioGroup'),
+        formFieldGroup('sex', '性别', sex),
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
-        formField('address', '联系地址', 'Input', { ...formItemFull, props: { type: 'textarea' } })
+        formField('address', '联系地址', 'Input').setProps({ type: 'textarea' }).setFIP(full)
       ],
       btns: [
         { text: '取消', click: () => this.onClose() },

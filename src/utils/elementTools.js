@@ -19,6 +19,7 @@ const setProps = function (props) {
   const fieldObj = this
   const newFieldObj = mergeWith(fieldObj.config.props, props, customizer)
   this.config.props = newFieldObj
+  return this
 }
 
 /**
@@ -29,12 +30,23 @@ const setOn = function (on) {
   const fieldObj = this
   const newFieldObj = mergeWith(fieldObj.config.on, on, customizer)
   this.config.on = newFieldObj
+  return this
+}
+/**
+ * 设置formItem组件属性
+ * @param {*} formItemProps 
+ * @returns 
+ */
+ const setFIP = function (formItemProps) {
+   this.formItemProps = mergeWith(this.formItemProps, formItemProps, customizer)
+   return this
 }
 
-const setFieldFun = function (obj) {
+const generateFieldObj = function (obj) {
   obj.setChildrens = setChildrens
   obj.setProps = setProps
   obj.setOn = setOn
+  obj.setFIP = setFIP
   return obj
 }
 
@@ -121,7 +133,7 @@ const customizer = (obj, src) =>{
 export const formField = (field, label, tag = 'Input', config = {}) => {
   const t = getTag(tag)
   const { attrs, props } = hanlderConfig(config, tag, label)
-  return setFieldFun({
+  return generateFieldObj({
     tag: t,
     field,
     label,
@@ -141,24 +153,22 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
   const t = getTag(tag)
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true, filterable: true }
-  return setFieldFun({
+  return generateFieldObj({
     tag: t,
     field,
     label,
     childrens: hanlderChildrens(childrens, t),
-    config: merge({attrs, props }, config)
+    config: merge({ attrs, props }, config)
   })
 }
 
 export const formTitle = (title, config = {}) => {
-  return {
+  return generateFieldObj({
     tag: 'div',
-    config: {
-      ...config,
-      formItemClass: 'form-is-full form-title' + (config.formItemClass ? ` ${config.formItemClass}` : '')
-    },
+    formItemProps: { class: `form-item-title` },
+    config: merge({}, config),
     childrens: title
-  }
+  })
 }
 /**
  * 改变 fields 属性
