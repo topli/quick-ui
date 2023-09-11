@@ -1,6 +1,15 @@
 import Vue from 'vue'
 import { cloneDeep, mergeWith, merge, isArray, debounce } from 'loadsh'
-import { elComponentNames } from './dict'
+import { elComponentNames } from './constant'
+
+/**
+ * 初始化数组方法
+ * @param {*} field 
+ * @returns 
+ */
+Array.prototype.getField = function (field) {
+  return this.find(item => item.field === field)
+}
 
 /**
  * 设置 fieldGroup childrens
@@ -41,7 +50,11 @@ const setOn = function (on) {
    this.formItemProps = mergeWith(this.formItemProps, formItemProps, customizer)
    return this
 }
-
+/**
+ * 生成Field对象方法
+ * @param {*} obj Field
+ * @returns 
+ */
 const generateFieldObj = function (obj) {
   obj.setChildrens = setChildrens
   obj.setProps = setProps
@@ -161,7 +174,12 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
     config: merge({ attrs, props }, config)
   })
 }
-
+/**
+ * 创建form title
+ * @param {*} title 标题
+ * @param {*} config 渲染函数配置
+ * @returns 
+ */
 export const formTitle = (title, config = {}) => {
   return generateFieldObj({
     tag: 'div',
@@ -171,7 +189,7 @@ export const formTitle = (title, config = {}) => {
   })
 }
 /**
- * 改变 fields 属性
+ * @deprecated use formField.setProps() method
  * @param {*} items
  * @param {*} index
  * @param {*} newField
@@ -184,7 +202,7 @@ export const changeFieldsByIndex = (fields, index, newField) => {
 }
 
 /**
- * 根据 prop 改变 fields 属性
+ * @deprecated use formField.setProps() method
  * @param {*} fields
  * @param {*} index
  * @param {*} props

@@ -57,7 +57,7 @@ export default {
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
-        formField('address', '联系地址', 'Input').setProps({ type: 'textarea' }).setFIP(full)
+        formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full)
       ],
       btns: [
         { text: '取消', click: () => this.onClose() },
@@ -68,7 +68,9 @@ export default {
   created() {
     if (this.data) {
       this.form = cloneDeep(this.data)
-      changeFieldsByProp(this.fields, 'userName', { config: { props: { disabled: true } } }) // 设置item props属性
+      this.fields
+        .getField('userName')
+        .setProps({ disabled: true })
       // 编辑时不验证
       this.rules.identityCard = {}
       this.rules.mobile = {}

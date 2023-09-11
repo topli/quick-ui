@@ -36,12 +36,12 @@ export default {
           // formField("name", "姓名"),
           formFieldGroup("sex", "性别", sex),
           // 函数方式 指定渲染标签
-          formField("time", "时间", 'QkDate', { props: { type: 'time', pickerOptions: { minTime: new Date() } }}),
-          formField("timerange", "时间区间", 'QkDate', { props: { type: 'timerange' }}),
-          formField("date", "日期", 'QkDate', { props: { type: 'date' }}),
-          formField("daterange", "日期区间", 'QkDate', { props: { type: 'daterange' }}),
-          formField("datetime", "日期时间", 'QkDate', { props: { type: 'datetime' }}),
-          formField("datetimeRange", "日期时间区间", 'QkDate', { props: { type: 'datetimerange' }}),
+          formField("time", "时间", 'QkDate').setProps({ type: 'time', pickerOptions: { minTime: new Date() } }),
+          formField("timerange", "时间区间", 'QkDate').setProps({ type: 'timerange' }),
+          formField("date", "日期", 'QkDate').setProps({ type: 'date' }),
+          formField("daterange", "日期区间", 'QkDate').setProps({ type: 'daterange' }),
+          formField("datetime", "日期时间", 'QkDate').setProps({ type: 'datetime' }),
+          formField("datetimeRange", "日期时间区间", 'QkDate').setProps({ type: 'datetimerange' }),
           // formFieldGroup('simStatus', 'SIM卡状态', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}]),
           // RadioGroup demo
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'RadioGroup'),
@@ -378,7 +378,7 @@ export default {
       }
     ]
     this.page.totalElement = 3
-    // changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
+    changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
   },
   methods: {
     onSearch(search, page) {

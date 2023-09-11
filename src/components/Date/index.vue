@@ -27,7 +27,7 @@
 import { merge } from 'loadsh'
 import { dateFormat } from '@/utils'
 import Picker from 'element-ui/packages/date-picker/src/picker.vue'
-console.log(Picker);
+
 export default {
   name: 'QkDate',
   props: merge(Picker.props,

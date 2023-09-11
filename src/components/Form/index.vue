@@ -70,6 +70,7 @@ export default {
       }
     }
   },
+  mounted() {},
   methods: {
     showLabel(item) {
       if (item.label) {
