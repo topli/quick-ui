@@ -5,7 +5,7 @@
 <script>
 import { cloneDeep } from 'loadsh'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
-import { formField, formFieldGroup, formTitle, changeFieldsByProp } from "@/utils"
+import { formField, formFieldGroup, formTitle } from "@/utils"
 import { orgType, sex } from '@/libs/options'
 
 const full = {

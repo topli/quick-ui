@@ -4,12 +4,16 @@
 ::: demo
 ```
 <template>
-  <QkForm ref="quickForm" form-item-split="2" :rules="rules" :model="form" :fields="fields" :btns="btns" label-width="100px"/>
+  <QkForm ref="quickForm" label-position="top" column="3" :rules="rules" :model="form" :fields="fields" :btns="btns" />
 </template>
 
 <script>
+  
   export default {
     data() {
+      const full = {
+        span: 'full'
+      }
       const { formField, formFieldGroup, formTitle, changeFieldsByProp } = this.$qkUtils
       const notNull = { required: true, message: '不能为空' }
 
@@ -18,23 +22,41 @@
       const orgType = [{value: 1, label: '厂家'},{value: 2, label: '供应商'}]
       return {
         rules: {
-          userName: notNull
+          userName: [
+            notNull
+          ],
+          name: [
+            // notNull,
+            // lengthRange(2, 20)
+          ],
+          identityCard: [
+            // notNull,
+            // identityCard
+          ],
+          sex: notNull,
+          'org.type': notNull,
+          // orgId: notNull,
+          mobile: [
+            notNull,
+            // phone
+          ],
+          // email: [email, maxLength(60)]
         },
         form: {
           userName: '',
           org: {}
         },
         fields: [
-          formTitle('基础数据'),
+          formTitle('基础数据').setFIP(full), // setFIP、setProps (V2.2.0)
           formField('userName', '用户名'),
           formField('name', '姓名'),
           formField('mobile', '手机号'),
           formField('identityCard', '身份证'),
-          formFieldGroup('sex', '性别', sex, 'RadioGroup'),
+          formFieldGroup('sex', '性别', sex),
           formFieldGroup('org.type', '机构类型', orgType),
           formField('qq', 'qq'),
           formField('email', '电子邮箱'),
-          formField('address', '联系地址', 'Input', { props: { type: 'textarea' }, formItemClass: 'form-is-full' })
+          formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full) // setFIP、setProps (V2.2.0)
         ],
         btns: [
           { text: '取消', click: () => this.onClose() },
@@ -60,11 +82,11 @@
   </thead>
   <tbody>
     <tr>
-      <td>formItemSplit</td>
+      <td>column</td>
       <td>每行formItem的数量</td>
       <td>number</td>
-      <td>最大3</td>
-      <td>—</td>
+      <td></td>
+      <td>2</td>
     </tr>
     <tr>
       <td>rules</td>
