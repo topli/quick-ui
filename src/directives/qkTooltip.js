@@ -26,9 +26,9 @@ const resetPosition = (el) => {
 const inserted = (el, binding) => {
   const content = binding.value
   if (!content) return
-  el.classList.add('form-item-tooltip')
+  el.classList.add('qk-tooltip-wrapper')
   const tooltip = document.createElement('div')
-  tooltip.className = 'form-item-tooltip-content'
+  tooltip.className = 'qk-tooltip-content'
   tooltip.innerHTML = binding.value
   el.__tooltip = tooltip
   el.onmouseover = () => {

@@ -20,7 +20,7 @@ export default {
       loading: false,
       // 搜索条件
       search: {
-        placeholderMode: 'tooltip',
+        placeholderMode: 'fixedTop',
         formData: {
           test: [],
           time: new Date(),

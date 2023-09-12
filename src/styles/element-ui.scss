@@ -158,8 +158,8 @@ $inputW: 220px;
   min-height: 200px;
 }
 // from hover 提示
-.form-item-tooltip {
-  &-content {
+.qk-tooltip-wrapper {
+  .qk-tooltip-content {
     position: fixed;
     display: none;
     opacity: 0;
@@ -183,7 +183,7 @@ $inputW: 220px;
     }
   }
   &:hover{
-    .form-item-tooltip-content {
+    .qk-tooltip-content {
       display: block;
       opacity: 1;
       line-height: 1.5;
