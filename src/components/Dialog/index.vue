@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     customClass() {
-      return 'custom-el-dialog ' + this.class
+      return 'qk-dialog ' + this.class
     }
   },
   created() {},

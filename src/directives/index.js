@@ -2,5 +2,5 @@
  *  描述：Global directive js
  */
 
-export * from './formItemTooltip.js'
-export * from './qkTooltip'
+export * from './qkTooltip.js'
+export * from './qkFixedTop.js'

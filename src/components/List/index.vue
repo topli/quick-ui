@@ -4,14 +4,18 @@
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
           <el-form-item :key="item.field">
-            <QkDynamic :model="listSearch.formData" tooltip :field="item.field" :tag="item.tag" :config="item.config"
+            <QkDynamic
+              :model="listSearch.formData"
+              :placeholder-mode="listSearch.placeholderMode"
+              :field="item.field"
+              :tag="item.tag"
+              :config="item.config"
               :childrens="item.childrens" />
           </el-form-item>
         </template>
       </el-form>
       <template slot="btns">
-        <el-button v-for="btn in listSearch.btns" :key="btn.icon || btn.text" :disabled="btn.disabled || false" round
-          @click="btn.click">
+        <el-button v-for="btn in listSearch.btns" :key="btn.icon || btn.text" :disabled="btn.disabled" @click="btn.click">
           <el-tooltip :disabled="!btn.icon" :content="btn.text" placement="top">
             <div class="qk-search-btn">
               <i v-if="btn.icon" :class="`${iconfont} icon-${btn.icon}`"></i>
@@ -70,21 +74,19 @@
     watch: {
       search: {
         handler: function (val) {
-          this.listSearch = {
+          this.listSearch = merge(val || {
             formData: {},
             fields: [],
             btns: [],
             pages: {},
-          };
-          this.listSearch = merge(val);
+          });
         },
         deep: true,
         immediate: true,
       },
       page: {
         handler: function (val) {
-          this.listPage = {}
-          this.listPage = merge(val)
+          this.listPage = merge(val || {})
         },
         deep: true,
         immediate: true,
@@ -138,14 +140,13 @@
         return on;
       },
       setTableHeight() {
-        const taht = this
+        const that = this
         const table = document.getElementsByClassName('qk-table')[0]
+        function onResize(e) {
+          that.tableHeight = e[0].target.clientHeight
+        }
         const resizeObserver = new ResizeObserver(onResize);
         resizeObserver.observe(table);
-
-        function onResize(e) {
-          taht.tableHeight = e[0].target.clientHeight
-        }
       }
     },
   };

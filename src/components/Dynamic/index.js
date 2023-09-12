@@ -15,7 +15,11 @@ export default {
     value: [String, Number, Object, Array, Date],
     // 构建子级用  childrens 是数组 配置项参考Dynamic配置  childrens是字符串直接显示文本
     childrens: [Array, String],
-    tooltip: Boolean
+    // default、fixedTop、tooltip
+    placeholderMode: {
+      type: String,
+      default: 'default'
+    }
   },
   data() {
     return {}
@@ -36,7 +40,13 @@ export default {
     value = this.hanlderElementValue(value, this.tag)
 
     const directives = []
-    if (this.tooltip) {
+    if (this.placeholderMode === 'fixedTop') {
+      directives.push({
+        name: 'qkFixedTop',
+        value: this.config.attrs.placeholder
+      })
+    }
+    if (this.placeholderMode === 'tooltip') {
       directives.push({
         name: 'qkTooltip',
         value: this.config.attrs.placeholder

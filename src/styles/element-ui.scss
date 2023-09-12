@@ -69,7 +69,6 @@ $inputW: 220px;
   margin: 0 auto;
 }
 
-
 .qk-list {
   // 搜索栏 样式
   .qk-search {
@@ -138,7 +137,7 @@ $inputW: 220px;
   }
 }
 
-.custom-el-dialog {
+.qk-dialog {
   border-radius: 4px;
   .el-dialog__header {
     position: relative;
@@ -187,6 +186,7 @@ $inputW: 220px;
     .form-item-tooltip-content {
       display: block;
       opacity: 1;
+      line-height: 1.5;
     }
   }
 }

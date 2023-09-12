@@ -1,6 +1,6 @@
 <template>
-  <div class="qk-date" :class="['qk-date__' + type]">
-    <input class="el-input__inner" readonly v-model="inputValue" ref="inputRef" @click="showPicker">
+  <div class="qk-date" :class="clazz">
+    <input class="el-input__inner" :placeholder="placeholder" readonly v-model="inputValue" ref="inputRef" @click="showPicker">
     <i class="el-icon el-icon-circle-close" v-if="!!inputValue" @click="inputClear"></i>
     <el-date-picker
       ref="dateRef"
@@ -72,8 +72,11 @@ export default {
     isTimerange() {
       return this.type === 'timerange'
     },
-    _value() {
+    realValue() {
       return this.isTime ? this.timeValue : this.dateValue
+    },
+    clazz() {
+      return ['qk-date--' + this.type, this.$ELEMENT.size ? ('qk-date--' + this.$ELEMENT.size) : '']
     }
   },
   mounted() {
@@ -128,15 +131,15 @@ export default {
       this.dateValue = null
       this.timeValue = null
       this.inputValue = null
-      this.$emit('input', this._value)
-      this.$emit('change', this._value)
+      this.$emit('input', this.realValue)
+      this.$emit('change', this.realValue)
       this.$emit('blur')
     },
     dateChange() {
       const getValue = this.isTime ? this.getTimeString : this.getDateString
       this.inputValue = getValue()
-      this.$emit('input', this._value)
-      this.$emit('change', this._value)
+      this.$emit('input', this.realValue)
+      this.$emit('change', this.realValue)
     },
     dateBlur() {
       this.visible = false
@@ -172,9 +175,33 @@ export default {
     top: 0;
     left: 0;
   }
-  &.qk-date__datetimerange {
+  &.qk-date--datetimerange {
     .el-input__inner {
       width: calc(220px * 2 + 10px);
+    }
+  }
+  &.qk-date--medium {
+    font-size: 13px;
+    display: inline-block;
+    .el-input__inner {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+  &.qk-date--small {
+    font-size: 13px;
+    display: inline-block;
+    .el-input__inner {
+      height: 32px;
+      line-height: 32px;
+    }
+  }
+  &.qk-date--mini {
+    font-size: 12px;
+    display: inline-block;
+    .el-input__inner {
+      height: 28px;
+      line-height: 28px;
     }
   }
 }

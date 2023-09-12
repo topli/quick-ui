@@ -1,10 +1,9 @@
-.qk-tooltip-wrapper {
+.qk-fixed-top-wrapper {
   position: static;
   ::-webkit-input-placeholder {
     color: transparent;
   }
-  .qk-tooltip {
-    pointer-events: none;
+  .qk-fixed-text {
     position: absolute;
     padding: 2px 5px;
     top: 50%;
@@ -14,5 +13,34 @@
     transition: all 0.3s;
     background-color: #fff;
     line-height: 20px;
+  }
+  .qk-fixed-inner {
+    pointer-events: none;
+  }
+  .qk-fixed-top {
+    pointer-events: all;
+  }
+}
+
+[class$='--medium']{
+  .qk-fixed-text {
+    padding: 0px 4px!important;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+[class$='--small']{
+  .qk-fixed-text {
+    padding: 0px 4px!important;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+[class$='--mini']{
+  .qk-fixed-text {
+    padding: 0px 3px!important;
+    font-size: 12px;
+    line-height: 16px;
   }
 }

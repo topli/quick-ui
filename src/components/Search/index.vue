@@ -5,7 +5,7 @@
     </div>
     <div ref="qkSearchBtns" class="qk-search-btns">
       <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
-      <el-button class="qk-search-btn" :icon="searchBtnText ? '' : 'el-icon-search'" type="primary" round @click="onSearch">
+      <el-button class="qk-search-btn" :icon="searchBtnText ? '' : 'el-icon-search'" type="primary" @click="onSearch">
         {{ searchBtnText ? '查询' : ''}}
       </el-button>
       <slot name="btns"></slot>
@@ -18,10 +18,6 @@ import { isNumber } from 'loadsh'
 export default {
   name: 'QkSearch',
   props: {
-    height: {
-      type: [String, Number],
-      default: 62
-    },
     showText: {
       type: Boolean,
       default: null
@@ -32,7 +28,13 @@ export default {
       toggleOpen: false,
       formHeight: 0,
       btnsWidth: 0,
-      btnsHeight: 0
+      btnsHeight: 0,
+      defHeight: {
+        default: 62,
+        medium: 58,
+        small: 55,
+        mini: 50
+      }
     }
   },
   computed: {
@@ -60,6 +62,9 @@ export default {
       }
     }
   },
+  created() {
+    this.setDefHeight()
+  },
   mounted() {
     this.getFormHeight()
     window.addEventListener('resize', this.getFormHeight)
@@ -68,6 +73,9 @@ export default {
     window.removeEventListener('resize', this.getFormHeight)
   },
   methods: {
+    setDefHeight() {
+      this.height = this.defHeight[this.$ELEMENT.size || 'default']
+    },
     getFormHeight() {
       this.$nextTick(() => {
         if (this.$slots.default) {

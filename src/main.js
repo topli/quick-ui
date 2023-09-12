@@ -12,7 +12,7 @@ import QuickUI from '@/components/index.js'
 import router from '@/router'
 
 Vue.config.productionTip = false
-
+// default medium small mini
 Vue.use(ElementUI)
 Vue.use(QuickUI, { iconfont: 'qk-icon', searchBtnText: true })
 
