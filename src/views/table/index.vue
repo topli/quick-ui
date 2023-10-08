@@ -9,10 +9,19 @@
 </template>
 
 <script>
-import { changeFieldsByProp, formField, formFieldGroup, generateBtns } from "@/utils"
+import { formField, formFieldGroup, generateBtns } from "@/utils"
 import { sex, orgType } from '@/libs/options'
 import Add from './add'
 import Detail from './detail'
+
+const convertFilters = (arr) => {
+  return arr.map(item => {
+    return {
+      text: item.label,
+      value: item.value
+    }
+  })
+}
 export default {
   components: {},
   data: function () {
@@ -22,7 +31,6 @@ export default {
       search: {
         placeholderMode: 'fixedTop',
         formData: {
-          test: [],
           time: new Date(),
           timerange: [new Date(), new Date(Date.now() + 565498481)],
           date: new Date(),
@@ -34,7 +42,7 @@ export default {
           // 对象方式
           // { tag: 'el-input', field: 'username', label: '用户名', config: { attrs: { placeholder: '用户名' }, props: { clearable: true }} },
           // 函数方式 默认渲染el-input标签
-          // formField("name", "姓名"),
+          formField("name", "姓名"),
           formFieldGroup("sex", "性别", sex),
           // 函数方式 指定渲染标签
           formField("time", "时间", 'QkDate').setProps({ type: 'time', pickerOptions: { minTime: new Date() } }),
@@ -57,11 +65,20 @@ export default {
       // 表格
       table: {
         data: [],
+        on: {
+          'sort-change': (event) => {
+            console.log(event);
+          },
+          'filter-change': (filters) => {
+            console.log(filters);
+          }
+        },
         columns: [
           {
             key: "userName",
             label: "用户名",
-            width: 100
+            width: 100,
+            sortable: true
           },
           {
             key: "name",
@@ -85,7 +102,8 @@ export default {
           {
             key: "sex",
             label: "性别",
-            options: sex
+            options: sex,
+            filters: convertFilters(sex)
           },
           {
             key: 'org.type',
@@ -140,7 +158,7 @@ export default {
               return generateBtns(h, params, buttons)
             },
           },
-        ],
+        ]
       },
       // 分页
       page: {
@@ -379,7 +397,7 @@ export default {
       }
     ]
     this.page.totalElement = 3
-    changeFieldsByProp(this.search.fields, 'sex', { childrens: [{value: 1, label: '男'}]})
+    this.search.fields.getField('sex').setChildrens([{ value: 1, label: '男' }])
   },
   methods: {
     onSearch(search, page) {

@@ -26,9 +26,9 @@
         <el-table-column
           v-if="!!col"
           v-bind="col"
-          :key="col.key"
-          :show-overflow-tooltip="showOverflowTooltip(col)"
-          filter-placement="bottom">
+          :prop="col.key"
+          :column-key="col.key"
+          :show-overflow-tooltip="showOverflowTooltip(col)">
           <template slot-scope="scope">
             <render-column
               v-if="col.render || col.options"

@@ -24,6 +24,8 @@
         loading: false,
         // 搜索条件
         search: {
+          // 占位符显示模式
+          placeholderMode: 'fixedTop',
           formData: {
             test: []
           },
@@ -34,7 +36,7 @@
             formField("name", "姓名"),
             formFieldGroup("sex", "性别", sex),
             // 函数方式 指定渲染标签
-            formField("time", "时间", 'DatePicker', { props: { type: 'datetime' }}),
+            formField("date", "日期", 'QkDate'),
           ],
           btns: [
           // { text: '新增', icon: 'add', click: this.addData },
@@ -447,6 +449,13 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>placeholderMode</td>
+      <td>占位符显示模式</td>
+      <td>String</td>
+      <td>default/fixedTop/tooltip</td>
+      <td>default</td>
+    </tr>
     <tr>
       <td>formData</td>
       <td>搜索form绑定值</td>
