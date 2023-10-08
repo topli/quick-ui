@@ -160,7 +160,7 @@
     display: flex;
     flex-direction: column;
 
-    /deep/.qk-table {
+    :deep .qk-table {
       flex: 1;
 
       .el-table__fixed-right {

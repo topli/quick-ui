@@ -147,7 +147,7 @@
     width: 100%;
     max-height: 60vh;
 
-    /deep/.el-scrollbar__wrap {
+    :deep .el-scrollbar__wrap {
       overflow-x: hidden;
       max-height: 60vh;
       margin-bottom: 0!important;

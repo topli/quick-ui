@@ -28,7 +28,7 @@ $inputW: 220px;
     .el-date-editor--daterange {
       width: auto;
       .el-range-input {
-        width: $inputW / 2;
+        width: calc($inputW / 2);
       }
       .el-icon-date {
         display: none;
