@@ -10,8 +10,6 @@ const inserted = (el, binding, vNode) => {
   // 查找输入框
   const input = el._input = el.querySelector('input')
 
-  console.log(vNode.child.value);
-
   const toTop = () => {
     fixedTop.style.left = '10px'
     fixedTop.style.top = '0'

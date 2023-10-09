@@ -53,7 +53,7 @@ export default {
         formField('name', '姓名'),
         formField('mobile', '手机号'),
         formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别', sex),
+        formFieldGroup('sex', '性别', sex, 'RadioGroup'),
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),

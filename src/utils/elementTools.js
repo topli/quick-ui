@@ -30,6 +30,16 @@ const setProps = function (props) {
   this.config.props = newFieldObj
   return this
 }
+/**
+ * 设置 field 、fieldGroup attrs
+ * @param { * } props 组件props
+ */
+const setAttrs = function (attrs) {
+  const fieldObj = this
+  const newFieldObj = mergeWith(fieldObj.config.attrs, attrs, customizer)
+  this.config.attrs = newFieldObj
+  return this
+}
 
 /**
  * 设置 field 、fieldGroup on
@@ -58,6 +68,7 @@ const setOn = function (on) {
 const generateFieldObj = function (obj) {
   obj.setChildrens = setChildrens
   obj.setProps = setProps
+  obj.setAttrs = setAttrs
   obj.setOn = setOn
   obj.setFIP = setFIP
   return obj

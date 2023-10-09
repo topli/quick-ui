@@ -47,7 +47,6 @@ export default {
       }
     },
     mountedComponent(tab) {
-      console.log(tab)
       this.$nextTick(() => {
         const Components = window.Vue.extend(tab.component)
         const component = new Components({

@@ -110,7 +110,7 @@ export default {
       }
     }
   .qk-dialog-form-body {
-    padding: 10px 30px 10px 30px;
+    padding: 20px 30px;
     .el-form {
       display: grid;
       grid-column-gap: 20px;
