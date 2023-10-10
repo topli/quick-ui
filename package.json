@@ -41,9 +41,10 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "sass-node": "^4.11.2",
-    "sass": "^1.69.0",
-    "sass-loader": "^13.3.2",
+    "sass": "^1.53.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.1",
+    "vue-loader": "^15.10.0",
     "vue-template-compiler": "^2.6.14",
     "vuepress": "^1.9.9"
   },

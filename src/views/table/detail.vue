@@ -1,9 +1,10 @@
 <template>
-  <QkDetail :columns="columns" :data="data" split="2"></QkDetail>
+  <QkDetail :fields="fields" :data="data" column="2"></QkDetail>
 </template>
 
 <script>
 import { sex } from '@/libs/options'
+import CustomTest from './customTest'
 export default {
   props: {
     data: {
@@ -13,11 +14,11 @@ export default {
   },
   data() {
     return {
-      columns: [
+      fields: [
           {
             key: "userName",
             label: "用户名",
-            colSpan: 2
+            span: 2
           },
           {
             key: "mobile",
@@ -25,7 +26,11 @@ export default {
           },
           {
             key: "identityCard",
-            label: "身份证"
+            label: "身份证",
+            span: 2,
+            render: (h, params) => {
+              return h(CustomTest, { props: { value: params.row }})
+            }
           },
           {
             key: "identityCard",

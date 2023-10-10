@@ -61,6 +61,15 @@ const setOn = function (on) {
    return this
 }
 /**
+ * 设置组件
+ * @param {*} tag el组件|自定义组件
+ * @returns 
+ */
+const setTag = function (tag) {
+  this.tag = tag
+  return this
+}
+/**
  * 生成Field对象方法
  * @param {*} obj Field
  * @returns 
@@ -71,6 +80,7 @@ const generateFieldObj = function (obj) {
   obj.setAttrs = setAttrs
   obj.setOn = setOn
   obj.setFIP = setFIP
+  obj.setTag = setTag
   return obj
 }
 
@@ -194,7 +204,7 @@ export const formFieldGroup = (field, label, childrens, tag = 'Select', config =
 export const formTitle = (title, config = {}) => {
   return generateFieldObj({
     tag: 'div',
-    formItemProps: { class: `form-item-title` },
+    formItemProps: { span: 'full' },
     config: merge({}, config),
     childrens: title
   })

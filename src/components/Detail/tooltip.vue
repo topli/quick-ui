@@ -57,7 +57,6 @@ export default {
 <style lang="scss">
 .detail-text-tooltip {
   width: 100%;
-  padding: 10px;
   > div {
     word-break: keep-all;
   }

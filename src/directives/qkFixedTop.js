@@ -49,6 +49,7 @@ const inserted = (el, binding, vNode) => {
     el._focus = () => toTop()
     el._blur = () => {
       setTimeout(() => {
+        vNode.child.visible = false
         toInner()
       }, 60);
     }

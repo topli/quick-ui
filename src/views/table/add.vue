@@ -48,7 +48,7 @@ export default {
         org: {}
       },
       fields: [
-        formTitle('基础数据').setFIP(full),
+        formTitle('基础数据'),
         formField('userName', '用户名'),
         formField('name', '姓名'),
         formField('mobile', '手机号'),

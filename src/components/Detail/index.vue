@@ -1,13 +1,18 @@
 <template>
   <el-scrollbar class="qk-detail-scrollbar">
     <div ref="detailWrapper" class="qk-detail">
-      <div class="qk-detail-wrapper">
-        <div v-for="col in columns" :key="col.key" :style="itemStyle(col)" class="qk-detail-item">
+      <div class="qk-detail-wrapper" :style="wrapperStyle">
+        <div v-for="col in fields" :key="col.key" :style="itemStyle(col)" class="qk-detail-item">
           <div :style="labelStyle" class="qk-detail-item-label">
             {{ getLabel(col.key) }}
           </div>
           <div :style="contentStyle" class="qk-detail-item-content">
-            <DetailTooltip :content="getText(col)" :filter="col.filter" />
+            <render-column
+              v-if="col.render"
+              :render-content="col.render"
+              :scope="{row: data}"
+              :prop="col.key"/>
+            <DetailTooltip v-else :content="getText(col)" :filter="col.filter" />
           </div>
         </div>
       </div>
@@ -16,6 +21,7 @@
 </template>
 
 <script>
+  import RenderColumn from '../Table/render-column'
   import DetailTooltip from './tooltip'
 
   function getMapKeys(arr, key) {
@@ -29,7 +35,8 @@
   export default {
     name: 'QkDetail',
     components: {
-      DetailTooltip
+      DetailTooltip,
+      RenderColumn
     },
     props: {
       data: {
@@ -38,13 +45,13 @@
           return {}
         }
       },
-      columns: {
+      fields: {
         type: Array,
         default: () => {
           return []
         }
       },
-      split: {
+      column: {
         type: [String, Number],
         default: 2
       },
@@ -55,19 +62,26 @@
     },
     data() {
       return {
-        colMap: null,
-        itemWidth: 0
+        colMap: null
       }
     },
     computed: {
+      wrapperStyle() {
+        return {
+          'grid-template-columns': `repeat(${this.split}, auto)`
+        }
+      },
       itemStyle() {
         return function (col) {
-          let width = this.itemWidth
-          if (col.colSpan) {
-            width = col.colSpan * this.itemWidth
+          if (!col) return {}
+          let gridColumnEnd = 1
+          if (col.span === 'full') {
+            gridColumnEnd = `span ${this.column}`
+          } else {
+            gridColumnEnd = `span ${col.span}`
           }
           return {
-            width: width + '%'
+            gridColumnEnd
           }
         }
       },
@@ -86,15 +100,11 @@
       }
     },
     created() {
-      this.colMap = getMapKeys(this.columns, 'key')
+      this.colMap = getMapKeys(this.fields, 'key')
     },
     mounted() {
-      this.computeItemWidth()
     },
     methods: {
-      computeItemWidth() {
-        this.itemWidth = 100 / this.split
-      },
       convertWidth (width) {
         if (typeof width === 'string') {
           if (isNaN(Number(width))) {
@@ -156,8 +166,7 @@
   .qk-detail {
     padding: 15px;
     &-wrapper {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
       width: 100%;
       height: 100%;
       border: 1px solid #E7EAEA;
@@ -180,6 +189,7 @@
       }
 
       &-content {
+        padding: 10px;
         height: 100%;
         flex: 1;
         position: relative;
