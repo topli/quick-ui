@@ -85,7 +85,7 @@ export default {
       return ''
     },
     formItemStyle(formItemProps) {
-      if (!formItemProps) return {}
+      if (!formItemProps || !formItemProps.span) return {}
       let gridColumnEnd = 1
       if (formItemProps.span === 'full') {
         gridColumnEnd = `span ${this.column}`

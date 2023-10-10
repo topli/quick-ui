@@ -68,17 +68,17 @@
     computed: {
       wrapperStyle() {
         return {
-          'grid-template-columns': `repeat(${this.split}, auto)`
+          'grid-template-columns': `repeat(${this.column}, ${100/this.column}%)`
         }
       },
       itemStyle() {
         return function (col) {
-          if (!col) return {}
+          if (!col || !col.span) return {}
           let gridColumnEnd = 1
           if (col.span === 'full') {
             gridColumnEnd = `span ${this.column}`
           } else {
-            gridColumnEnd = `span ${col.span}`
+            gridColumnEnd = `span ${col.span || 1}`
           }
           return {
             gridColumnEnd

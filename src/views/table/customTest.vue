@@ -12,14 +12,16 @@
         default: () => {}
       }
     },
+    inject: ['qkDialog'],
     data() {
       return {}
     },
     created() {
-      console.log(this);
+      console.log(this.qkDialog);
     },
     methods: {
       test() {
+        this.qkDialog.close()
         console.log(1111111112222222233333);
       }
     }

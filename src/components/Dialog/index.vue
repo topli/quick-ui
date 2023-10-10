@@ -23,6 +23,11 @@ export default {
       closeOnClickModal: false
     }
   },
+  provide() {
+    return {
+      qkDialog: this
+    }
+  },
   computed: {
     customClass() {
       return 'qk-dialog ' + this.class
