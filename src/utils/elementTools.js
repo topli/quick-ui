@@ -19,6 +19,7 @@ const setChildrens = function (childrens) {
   const fieldObj = this
   const newChildrens = cloneDeep(hanlderChildrens(childrens, fieldObj.tag))
   this.childrens = newChildrens
+  return this
 }
 /**
  * 设置 field 、fieldGroup props
@@ -56,9 +57,9 @@ const setOn = function (on) {
  * @param {*} formItemProps 
  * @returns 
  */
- const setFIP = function (formItemProps) {
-   this.formItemProps = mergeWith(this.formItemProps, formItemProps, customizer)
-   return this
+const setFIP = function (formItemProps) {
+  this.formItemProps = mergeWith(this.formItemProps, formItemProps, customizer)
+  return this
 }
 /**
  * 设置组件
@@ -66,7 +67,7 @@ const setOn = function (on) {
  * @returns 
  */
 const setTag = function (tag) {
-  this.tag = tag
+  this.tag = getTag(tag)
   return this
 }
 /**
@@ -147,10 +148,10 @@ const hanlderConfig = (config, tag, label) => {
     props.startPlaceholder = '开始时间'
     props.endPlaceholder = '结束时间'
   }
-  return { attrs , props }
+  return { attrs, props }
 }
 
-const customizer = (obj, src) =>{
+const customizer = (obj, src) => {
   if (isArray(src)) {
     return src
   }
@@ -171,7 +172,7 @@ export const formField = (field, label, tag = 'Input', config = {}) => {
     tag: t,
     field,
     label,
-    config: merge({attrs, props}, config)
+    config: merge({ attrs, props }, config)
   })
 }
 /**

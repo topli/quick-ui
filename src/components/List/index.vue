@@ -28,8 +28,8 @@
     <QkTable ref="qkTable" class="qk-table" :height="tableHeight" :loading="loading" :data="table.data"
       :columns="table.columns" :selectable="table.selectable" :default-selections="table.defaultSeletions"
       v-bind="handlerProps(table.props)" v-on="handlerOn(table.on)" />
-    <div class="qk-pagination">
-      <el-pagination v-if="page" :current-page="listPage.num" :page-sizes="listPage.pageSize || [10, 20, 50]"
+    <div v-if="page" class="qk-pagination">
+      <el-pagination :current-page="listPage.num" :page-sizes="listPage.pageSize || [10, 20, 50]"
         :page-size="listPage.size" :total="listPage.totalElement"
         :layout="listPage.layout || 'total, sizes, prev, pager, next, jumper'" @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />

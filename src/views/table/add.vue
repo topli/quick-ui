@@ -53,7 +53,7 @@ export default {
         formField('name', '姓名'),
         formField('mobile', '手机号'),
         formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别', sex, 'RadioGroup'),
+        formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
         formFieldGroup('org.type', '机构类型', orgType),
         formField('qq', 'qq'),
         formField('email', '电子邮箱'),
@@ -66,6 +66,7 @@ export default {
     }
   },
   created() {
+    console.log(this.fields);
     if (this.data) {
       this.form = cloneDeep(this.data)
       this.fields
@@ -88,6 +89,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

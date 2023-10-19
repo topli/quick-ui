@@ -108,7 +108,7 @@ export default {
       flex: 1;
       .el-form {
         .el-form-item {
-          margin-top: 10px;
+          margin-top: 10px!important;
         }
       }
     }
