@@ -28,9 +28,17 @@ const inserted = (el, binding, vNode) => {
   const fixedTop = el._fixedTop = document.createElement('div')
   fixedTop.innerHTML = binding.value
   fixedTop.classList.add('qk-fixed-text')
-  // 查找输入框 (目前兼容 el-input el-select qk-date 自定义组件请绑定输入框ref为input)
-  let input = vNode.child.$refs.input || el.querySelector('.el-input__inner')
-
+  // 查找输入框 (目前兼容 el-input el-select el-autocomplete qk-date 自定义组件请绑定输入框ref为input)
+  let inputEl = null
+  if (vNode.child && vNode.child.$refs && vNode.child.$refs.input) {
+    if (vNode.child.$refs.input._isVue) {
+      inputEl = vNode.child.$refs.input.$el
+    } else {
+      inputEl = vNode.child.$refs.input
+    }
+  } else {
+    inputEl = el.querySelector('.el-input__inner')
+  }
   const toTop = () => {
     fixedTop.style.left = '10px'
     fixedTop.style.top = '0'
@@ -82,9 +90,9 @@ const inserted = (el, binding, vNode) => {
     }
   }
 
-  if (input) {
+  if (inputEl) {
     // 获取样式
-    let style = window.getComputedStyle(input, null);
+    let style = window.getComputedStyle(inputEl, null);
     el._input_pl = parseFloat(style.getPropertyValue('padding-left')) || 15;
     let empty = isEmpty(vNode.child.value)
     if (empty) {

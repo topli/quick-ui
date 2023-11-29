@@ -39,7 +39,12 @@ export default {
           // 函数方式 默认渲染el-input标签
           formField("name", "姓名"),
           formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex1", "性别", sex).setProps({
+          formFieldGroup("sex2", "性别2", sex)
+            .setTag("Autocomplete")
+            .setProps({
+              fetchSuggestions: () => { }
+            }),
+          formFieldGroup("sex1", "性别1", sex).setProps({
 
             multiple: true,
             collapseTags: true,
