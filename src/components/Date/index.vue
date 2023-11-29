@@ -1,24 +1,13 @@
 <template>
   <div class="qk-date" :class="clazz">
-    <input class="el-input__inner" :placeholder="placeholder" readonly v-model="inputValue" ref="inputRef" @click="showPicker">
+    <input class="el-input__inner" :placeholder="placeholder" readonly v-model="inputValue" ref="input"
+      @click="showPicker">
     <i class="el-icon el-icon-circle-close" v-if="!!inputValue" @click="inputClear"></i>
-    <el-date-picker
-      ref="dateRef"
-      v-bind="$props"
-      class="qk-date-component"
-      v-model="dateValue"
-      :type="type"
-      @change="dateChange"
-      @blur="dateBlur">
+    <el-date-picker ref="dateRef" v-bind="$props" class="qk-date-component" v-model="dateValue" :type="type"
+      @change="dateChange" @blur="dateBlur">
     </el-date-picker>
-    <el-time-picker
-      ref="timeRef"
-      v-bind="$props"
-      :is-range="isTimerange"
-      class="qk-time-component"
-      v-model="timeValue"
-      @change="dateChange"
-      @blur="dateBlur">
+    <el-time-picker ref="timeRef" v-bind="$props" :is-range="isTimerange" class="qk-time-component" v-model="timeValue"
+      @change="dateChange" @blur="dateBlur">
     </el-time-picker>
   </div>
 </template>
@@ -40,7 +29,7 @@ export default {
       inputValue: null,
       dateValue: null,
       timeValue: null,
-      inputRef: null,
+      input: null,
       dateRef: null,
       timeRef: null,
       visible: false,
@@ -80,7 +69,7 @@ export default {
     }
   },
   mounted() {
-    this.inputRef = this.$refs.inputRef
+    this.input = this.$refs.input
     this.dateRef = this.$refs.dateRef
     this.timeRef = this.$refs.timeRef
     this.initValue()
@@ -151,10 +140,12 @@ export default {
 <style scoped lang='scss'>
 .qk-date {
   position: relative;
+
   .el-input__inner {
     padding-right: 30px;
     width: 220px;
   }
+
   .el-icon {
     cursor: pointer;
     display: none;
@@ -164,46 +155,55 @@ export default {
     transform: translateY(-50%);
     color: #C0C4CC;
   }
+
   &:hover {
     .el-icon {
       display: block;
     }
   }
-  .qk-date-component, .qk-time-component {
+
+  .qk-date-component,
+  .qk-time-component {
     visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
   }
+
   &.qk-date--datetimerange {
     .el-input__inner {
       width: calc(220px * 2 + 10px);
     }
   }
+
   &.qk-date--medium {
     font-size: 13px;
     display: inline-block;
+
     .el-input__inner {
       height: 36px;
       line-height: 36px;
     }
   }
+
   &.qk-date--small {
     font-size: 13px;
     display: inline-block;
+
     .el-input__inner {
       height: 32px;
       line-height: 32px;
     }
   }
+
   &.qk-date--mini {
     font-size: 12px;
     display: inline-block;
+
     .el-input__inner {
       height: 28px;
       line-height: 28px;
     }
   }
 }
-
 </style>

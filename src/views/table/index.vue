@@ -1,11 +1,5 @@
 <template>
-  <QkList
-    :loading="loading"
-    :search="search"
-    :table="table"
-    :page="page"
-    @on-search="onSearch"
-  />
+  <QkList :loading="loading" :search="search" :table="table" :page="page" @on-search="onSearch" />
 </template>
 
 <script>
@@ -37,6 +31,7 @@ export default {
           daterange: [new Date(), new Date(Date.now() + 565498481)],
           datetime: new Date(),
           datetimeRange: [new Date(), new Date(Date.now() + 565498481)],
+          sex1: null
         },
         fields: [
           // 对象方式
@@ -44,6 +39,11 @@ export default {
           // 函数方式 默认渲染el-input标签
           formField("name", "姓名"),
           formFieldGroup("sex", "性别", sex),
+          formFieldGroup("sex1", "性别", sex).setProps({
+
+            multiple: true,
+            collapseTags: true,
+          }),
           // 函数方式 指定渲染标签
           formField("time", "时间", 'QkDate').setProps({ type: 'time', pickerOptions: { minTime: new Date() } }),
           formField("timerange", "时间区间", 'QkDate').setProps({ type: 'timerange' }),
@@ -398,6 +398,7 @@ export default {
     ]
     this.page.totalElement = 3
     this.search.fields.getField('sex').setChildrens([{ value: 1, label: '男' }])
+
   },
   methods: {
     onSearch(search, page) {
@@ -439,5 +440,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
