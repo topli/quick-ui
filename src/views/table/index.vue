@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import { formField, formFieldGroup, generateBtns } from "@/utils"
 import { sex, orgType } from '@/libs/options'
 import Add from './add'
@@ -70,7 +71,17 @@ export default {
       // 表格
       table: {
         data: [],
+        props: {
+          selection: true,
+          rowKey: '',
+          defaultSelected: []
+        },
         on: {
+          'selection-change': (e) => {
+            console.log('selection-change');
+            console.log(e);
+            this.allSelected[this.page.num - 1] = e.map(item => item.vin)
+          },
           'sort-change': (event) => {
             console.log(event);
           },
@@ -171,243 +182,284 @@ export default {
         size: 20,
         totalElement: 0,
       },
+      allData: [
+        {
+          vin: '1',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '1234567891223231233456',
+          sex: 1,
+          qq: ['123456789', '123', '123312312323'],
+          supplier: {
+            name: '厂商1'
+          },
+          org: {
+            type: 1
+          }
+        },
+        {
+          vin: '2',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789',
+          supplier: {
+            name: '厂商2'
+          }
+        },
+        {
+          vin: '3',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123', '123312312323']
+        },
+        {
+          vin: '4',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '5',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '6',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '7',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '8',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '9',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '10',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '11',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '12',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '13',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '14',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '15',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '16',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '17',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '18',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '19',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '20',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '21',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '22',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '23',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '24',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '25',
+          userName: 'li1',
+          name: '李1',
+          mobile: '15717179551',
+          identityCard: '123456789123456',
+          sex: 1,
+          qq: ['123456789', '123']
+        },
+        {
+          vin: '26',
+          userName: 'li2',
+          name: '李2',
+          mobile: '15717179552',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        },
+        {
+          vin: '27',
+          userName: 'li3',
+          name: '李3',
+          mobile: '15717179553',
+          identityCard: '123456789123456',
+          sex: 2,
+          qq: '123456789'
+        }
+      ],
+      allSelected: []
     }
   },
   created() {
-    this.table.data = [
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '1234567891223231233456',
-        sex: 1,
-        qq: ['123456789', '123', '123312312323'],
-        supplier: {
-          name: '厂商1'
-        },
-        org: {
-          type: 1
-        }
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789',
-        supplier: {
-          name: '厂商2'
-        }
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123', '123312312323']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li1',
-        name: '李1',
-        mobile: '15717179551',
-        identityCard: '123456789123456',
-        sex: 1,
-        qq: ['123456789', '123']
-      },
-      {
-        userName: 'li2',
-        name: '李2',
-        mobile: '15717179552',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      },
-      {
-        userName: 'li3',
-        name: '李3',
-        mobile: '15717179553',
-        identityCard: '123456789123456',
-        sex: 2,
-        qq: '123456789'
-      }
-    ]
-    this.page.totalElement = 3
+    this.table.data = _.cloneDeep(this.allData).splice((this.page.num - 1) * this.page.size, this.page.size)
+    this.page.totalElement = this.allData.length
     this.search.fields.getField('sex').setChildrens([{ value: 1, label: '男' }])
+
+
+    setTimeout(() => {
+      this.$set(this.table.props, 'defaultSelected', ['1', '2'])
+      this.$set(this.table.props, 'rowKey', 'vin')
+
+    }, 5000)
 
   },
   methods: {
     onSearch(search, page) {
       console.log(search, page)
+      this.table.data = _.cloneDeep(this.allData).splice((this.page.num - 1) * this.page.size, this.page.size)
+
+      this.$set(this.table.props, 'defaultSelections', this.allSelected[this.page.num - 1])
+
+      console.log(this.table.props);
     },
     showDetail(row) {
       this.$qkDialog({
