@@ -140,13 +140,13 @@ const hanlderConfig = (config, tag, label) => {
   const attrs = { placeholder: config.placeholder || label }
   const props = { clearable: true }
   if (tag === 'DatePicker' && config.props && config.props.type && config.props.type.indexOf('range') !== -1) {
-    props.startPlaceholder = '开始日期'
-    props.endPlaceholder = '结束日期'
+    props.startPlaceholder = config.startPlaceholder || '开始日期'
+    props.endPlaceholder = config.endPlaceholder ||  '结束日期'
     props.defaultTime = ['00:00:00', '23:59:59']
   }
   if (tag === 'TimePicker' && config.props && config.props.isRange) {
-    props.startPlaceholder = '开始时间'
-    props.endPlaceholder = '结束时间'
+    props.startPlaceholder = config.startPlaceholder || '开始时间'
+    props.endPlaceholder = config.endPlaceholder || '结束时间'
   }
   return { attrs, props }
 }

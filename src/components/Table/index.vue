@@ -4,7 +4,7 @@
       v-on="$listeners">
       <el-table-column v-if="selection" :selectable="$props.selectable" fixed type="selection" align="center" width="55">
       </el-table-column>
-      <el-table-column v-if="index" label="序号" type="index" align="center" class-name="table-index" width="70" />
+      <el-table-column v-if="index" :label="indexLabel" type="index" align="center" class-name="table-index" width="70" />
       <template v-for="col in columns">
         <el-table-column v-if="!!col" v-bind="col" :prop="col.key" :column-key="col.key"
           :show-overflow-tooltip="showOverflowTooltip(col)">
@@ -22,7 +22,7 @@
       </template>
       <template slot="empty">
         <div class="empty-state">
-          <p>暂无数据</p>
+          <p>{{ emptyText }}</p>
         </div>
       </template>
     </el-table>
@@ -41,9 +41,12 @@ export default {
   props: _.merge(_.cloneDeep(Table.props), {
     selection: { type: Boolean, default: false }, // 显示/隐藏勾选框
     index: { type: Boolean, default: false }, // 显示/隐藏序号
+    indexLabel: { type: String, default: '#' }, // 默认序号
+    emptyText: { type: String, default: '暂无数据'},
     columns: { type: Array, required: true }, // 列配置
     loading: { type: Boolean, default: false }, // 加载状态
     defaultSelected: { type: Array, default: () => null }, // 默认选中状态   配合 row-key 使用
+
   }),
   data() {
     return {}

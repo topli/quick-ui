@@ -10,6 +10,7 @@ import QuickUI from '@/components/index.js'
 // import '../lib/incar-quick-ui.css'
 
 import router from '@/router'
+import i18n from '@/i18n/index'
 
 Vue.config.productionTip = false
 // default medium small mini
@@ -17,6 +18,7 @@ Vue.use(ElementUI)
 Vue.use(QuickUI, { iconfont: 'qk-icon', searchBtnText: true })
 
 new Vue({
+  i18n,
   router,
   render: h => h(App),
 }).$mount('#app')

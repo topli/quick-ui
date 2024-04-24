@@ -1,6 +1,6 @@
 <template>
   <div class="qk-list">
-    <QkSearch v-if="search" @on-search="onSearch">
+    <QkSearch v-if="search" :search-text="listSearch.searchText" @on-search="onSearch">
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
           <el-form-item :key="item.field + '_' + encryptObject(item.config)">
@@ -22,7 +22,7 @@
       </template>
     </QkSearch>
     <QkTable ref="qkTable" class="qk-table" :height="tableHeight" :loading="loading" :data="table.data"
-      :columns="table.columns" :selectable="table.selectable" :default-selections="table.defaultSeletions"
+      :columns="table.columns" :index-label="table.indexLabel" :selectable="table.selectable" :default-selections="table.defaultSeletions"
       v-bind="handlerProps(table.props)" v-on="handlerOn(table.on)" />
     <div v-if="page" class="qk-pagination">
       <el-pagination :current-page="listPage.num" :page-sizes="listPage.pageSize || [10, 20, 50]"
@@ -96,6 +96,7 @@ export default {
   data() {
     return {
       listSearch: {
+        searchText: '',
         formData: {},
         fields: [],
         btns: [],
