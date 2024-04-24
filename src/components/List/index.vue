@@ -3,7 +3,7 @@
     <QkSearch v-if="search" @on-search="onSearch">
       <el-form :inline="true" :model="listSearch.formData">
         <template v-for="item in listSearch.fields">
-          <el-form-item :key="item.field">
+          <el-form-item :key="item.field + '_' + encryptObject(item.config)">
             <QkDynamic :model="listSearch.formData" :placeholder-mode="listSearch.placeholderMode" :field="item.field"
               :tag="item.tag" :config="item.config" :childrens="item.childrens" />
           </el-form-item>
@@ -143,7 +143,13 @@ export default {
       }
       const resizeObserver = new ResizeObserver(onResize);
       resizeObserver.observe(table);
-    }
+    },
+    // 生成加密字符串
+    encryptObject (obj) {
+      const jsonString = JSON.stringify(obj);
+      const base64String = encodeURIComponent(jsonString);
+      return base64String;
+    },
   },
 };
 </script>
