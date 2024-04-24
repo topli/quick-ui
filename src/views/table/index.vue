@@ -1,5 +1,8 @@
 <template>
-  <QkList :loading="loading" :search="search" :table="table" :page="page" @on-search="onSearch" />
+  <div>
+    <el-button @click="toggleLang">切换</el-button>
+    <QkList ref="qkList" :loading="loading" :search="search" :table="table" :page="page" @on-search="onSearch" />
+  </div>
 </template>
 
 <script>
@@ -36,27 +39,27 @@ export default {
         },
         fields: [
           // 对象方式
-          // { tag: 'el-input', field: 'username', label: '用户名', config: { attrs: { placeholder: '用户名' }, props: { clearable: true }} },
+          { tag: 'el-input', field: 'username', label: this.$t('test'), config: { attrs: { placeholder: this.$t('test') }, props: { clearable: true }} },
           // 函数方式 默认渲染el-input标签
-          formField("name", "姓名"),
+          formField("name", this.$t('test')),
           formFieldGroup("sex", "性别", sex),
-          formFieldGroup("sex2", "性别2", sex)
-            .setTag("Autocomplete")
-            .setProps({
-              fetchSuggestions: () => { }
-            }),
-          formFieldGroup("sex1", "性别1", sex).setProps({
+          // formFieldGroup("sex2", "性别2", sex)
+          //   .setTag("Autocomplete")
+          //   .setProps({
+          //     fetchSuggestions: () => { }
+          //   }),
+          // formFieldGroup("sex1", "性别1", sex).setProps({
 
-            multiple: true,
-            collapseTags: true,
-          }),
-          // 函数方式 指定渲染标签
-          formField("time", "时间", 'QkDate').setProps({ type: 'time', pickerOptions: { minTime: new Date() } }),
-          formField("timerange", "时间区间", 'QkDate').setProps({ type: 'timerange' }),
-          formField("date", "日期", 'QkDate').setProps({ type: 'date' }),
-          formField("daterange", "日期区间", 'QkDate').setProps({ type: 'daterange' }),
-          formField("datetime", "日期时间", 'QkDate').setProps({ type: 'datetime' }),
-          formField("datetimeRange", "日期时间区间", 'QkDate').setProps({ type: 'datetimerange' }),
+          //   multiple: true,
+          //   collapseTags: true,
+          // }),
+          // // 函数方式 指定渲染标签
+          // formField("time", "时间", 'QkDate').setProps({ type: 'time', pickerOptions: { minTime: new Date() } }),
+          // formField("timerange", "时间区间", 'QkDate').setProps({ type: 'timerange' }),
+          // formField("date", "日期", 'QkDate').setProps({ type: 'date' }),
+          // formField("daterange", "日期区间", 'QkDate').setProps({ type: 'daterange' }),
+          // formField("datetime", "日期时间", 'QkDate').setProps({ type: 'datetime' }),
+          // formField("datetimeRange", "日期时间区间", 'QkDate').setProps({ type: 'datetimerange' }),
           // formFieldGroup('simStatus', 'SIM卡状态', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}]),
           // RadioGroup demo
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'RadioGroup'),
@@ -64,8 +67,8 @@ export default {
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'CheckboxGroup'),
         ],
         btns: [
-          { text: '新增', icon: 'add', click: this.addData },
-          { text: '新增', click: this.addData }
+          // { text: '新增', icon: 'add', click: this.addData },
+          // { text: '新增', click: this.addData }
         ],
       },
       // 表格
@@ -92,7 +95,7 @@ export default {
         columns: [
           {
             key: "userName",
-            label: "用户名",
+            label: this.$t('test'),
             width: 100,
             sortable: true
           },
@@ -443,16 +446,26 @@ export default {
     this.table.data = _.cloneDeep(this.allData).splice((this.page.num - 1) * this.page.size, this.page.size)
     this.page.totalElement = this.allData.length
     this.search.fields.getField('sex').setChildrens([{ value: 1, label: '男' }])
-
-
-    setTimeout(() => {
-      this.$set(this.table.props, 'defaultSelected', ['1', '2'])
-      this.$set(this.table.props, 'rowKey', 'vin')
-
-    }, 5000)
-
+  },
+  watch: {
+    '$i18n.locale': function (val) {
+      console.log('$i18n.locale', val);
+      this.$refs.qkList.refreshList()
+    }
   },
   methods: {
+    toggleLang() {
+      let lang = localStorage.getItem('lang')
+      console.log(lang);
+      if (lang === 'en_US') {
+        lang = 'zh_CN'
+      } else {
+        lang = 'en_US'
+      }
+      localStorage.setItem('lang', lang)
+      this.$i18n.locale = lang
+      console.log(this.$t('test'));
+    },
     onSearch(search, page) {
       console.log(search, page)
       this.table.data = _.cloneDeep(this.allData).splice((this.page.num - 1) * this.page.size, this.page.size)
