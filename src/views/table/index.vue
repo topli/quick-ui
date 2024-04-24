@@ -27,6 +27,7 @@ export default {
       loading: false,
       // 搜索条件
       search: {
+        searchText: '搜索',
         placeholderMode: 'fixedTop',
         formData: {
           time: new Date(),
@@ -73,6 +74,7 @@ export default {
       },
       // 表格
       table: {
+        indexLabel: '序号',
         data: [],
         props: {
           selection: true,

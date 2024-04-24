@@ -5,8 +5,8 @@
     </div>
     <div ref="qkSearchBtns" class="qk-search-btns">
       <el-button v-if="showMore" :icon="toggleFromIcon" class="btn-more-item" type="text" @click="openSearchFun"/>
-      <el-button class="qk-search-btn" :icon="searchBtnText ? '' : 'el-icon-search'" type="primary" @click="onSearch">
-        {{ searchBtnText ? '查询' : ''}}
+      <el-button class="qk-search-btn" :icon="searchText ? '' : 'el-icon-search'" type="primary" @click="onSearch">
+        {{ searchText }}
       </el-button>
       <slot name="btns"></slot>
     </div>
@@ -18,8 +18,8 @@ import { isNumber } from 'loadsh'
 export default {
   name: 'QkSearch',
   props: {
-    showText: {
-      type: Boolean,
+    searchText: {
+      type: String,
       default: null
     }
   },
@@ -49,17 +49,6 @@ export default {
     },
     toggleFromIcon() {
       return this.toggleOpen ? 'el-icon-arrow-up' : 'el-icon-arrow-down'
-    },
-    text() {
-      return this.toggleOpen ? '收起' : '更多'
-    },
-    searchBtnText() {
-      if (this.showText !== null) {
-        return this.showText
-      }
-      if (this.$qkConfig.searchBtnText !== undefined) {
-        return this.$qkConfig.searchBtnText
-      }
     }
   },
   created() {
