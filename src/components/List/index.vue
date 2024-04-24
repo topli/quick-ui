@@ -22,7 +22,7 @@
       </template>
     </QkSearch>
     <QkTable ref="qkTable" class="qk-table" :height="tableHeight" :loading="loading" :data="table.data"
-      :columns="table.columns" :index-label="table.indexLabel" :selectable="table.selectable" :default-selections="table.defaultSeletions"
+      :columns="table.columns" :index-label="table.indexLabel" :empty-text="table.emptyText" :selectable="table.selectable" :default-selections="table.defaultSeletions"
       v-bind="handlerProps(table.props)" v-on="handlerOn(table.on)" />
     <div v-if="page" class="qk-pagination">
       <el-pagination :current-page="listPage.num" :page-sizes="listPage.pageSize || [10, 20, 50]"
