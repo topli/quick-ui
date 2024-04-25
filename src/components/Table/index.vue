@@ -2,9 +2,14 @@
   <transition name="fade">
     <el-table v-loading="tableLoading" ref="qkTable" v-bind="$props" :data="tableData" style="width: 100%"
       v-on="$listeners">
-      <el-table-column v-if="selection" :selectable="$props.selectable" fixed type="selection" align="center" width="55">
-      </el-table-column>
-      <el-table-column v-if="index" :label="indexLabel" type="index" align="center" class-name="table-index" width="70" />
+      <template v-if="_selection">
+        <el-table-column type="selection" v-bind="_selection"></el-table-column>
+        <!-- <el-table-column :selectable="selection.selectable" fixed type="selection" align="center" width="55"></el-table-column> -->
+      </template>
+      <template v-if="_index">
+        <el-table-column type="index" v-bind="_index"></el-table-column>
+        <!-- <el-table-column v-if="index" :label="indexLabel" type="index" align="center" class-name="table-index" width="70" /> -->
+      </template>
       <template v-for="col in columns">
         <el-table-column v-if="!!col" v-bind="col" :prop="col.key" :column-key="col.key"
           :show-overflow-tooltip="showOverflowTooltip(col)">
@@ -39,14 +44,12 @@ export default {
   name: 'QkTable',
   components: { renderColumn },
   props: _.merge(_.cloneDeep(Table.props), {
-    selection: { type: Boolean, default: false }, // 显示/隐藏勾选框
-    index: { type: Boolean, default: false }, // 显示/隐藏序号
-    indexLabel: { type: String, default: '#' }, // 默认序号
+    selection: { type: [Boolean, Object], default: false }, // 显示/隐藏勾选框
+    index: { type: [Boolean, Object], default: false }, // 显示/隐藏序号
     emptyText: { type: String, default: '暂无数据'},
     columns: { type: Array, required: true }, // 列配置
     loading: { type: Boolean, default: false }, // 加载状态
     defaultSelected: { type: Array, default: () => null }, // 默认选中状态   配合 row-key 使用
-
   }),
   data() {
     return {}
@@ -57,6 +60,46 @@ export default {
     },
     tableData() {
       return this.data
+    },
+    _selection() {
+      const defObj = {
+        fixed: true,
+        align: 'center',
+        width: 55
+      }
+      if (_.isObject(this.selection)) {
+        return {
+          ...defObj,
+          ...this.selection
+        }
+      } else if(_.isBoolean(this.selection)) {
+        if (this.selection) {
+          return defObj
+        } else {
+          return false
+        }
+      }
+      return false
+    },
+    _index() {
+      const defObj = {
+        label: '#',
+        align: 'center',
+        width: 55
+      }
+      if (_.isObject(this.index)) {
+        return {
+          ...defObj,
+          ...this.index
+        }
+      } else if(_.isBoolean(this.index)) {
+        if (this.index) {
+          return defObj
+        } else {
+          return false
+        }
+      }
+      return false
     }
   },
   watch: {

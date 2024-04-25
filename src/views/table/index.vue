@@ -74,10 +74,12 @@ export default {
       },
       // 表格
       table: {
-        indexLabel: '序号',
         data: [],
         props: {
           selection: true,
+          index: {
+            label: '序号',
+          },
           rowKey: '',
           defaultSelected: []
         },
