@@ -61,6 +61,9 @@ export default {
   beforeDestroy() {
     window.removeEventListener('resize', this.getFormHeight)
   },
+  updated() {
+    this.getFormHeight()
+  },
   methods: {
     setDefHeight() {
       this.height = this.defHeight[this.$ELEMENT.size || 'default']
