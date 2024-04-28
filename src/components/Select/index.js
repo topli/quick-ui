@@ -1,4 +1,4 @@
-import { merge, cloneDeep } from 'loadsh'
+import { merge, cloneDeep } from 'lodash'
 import { Select } from 'element-ui'
 
 export default {

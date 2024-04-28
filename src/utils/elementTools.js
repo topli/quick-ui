@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { cloneDeep, mergeWith, merge, isArray, debounce } from 'loadsh'
+import { cloneDeep, mergeWith, merge, isArray, debounce } from 'lodash'
 import { elComponentNames } from './constant'
 
 /**

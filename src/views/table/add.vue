@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { cloneDeep } from 'loadsh'
+import { cloneDeep } from 'lodash'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
 import { formField, formFieldGroup, formTitle } from "@/utils"
 import { orgType, sex } from '@/libs/options'

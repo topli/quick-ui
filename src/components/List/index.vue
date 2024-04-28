@@ -44,7 +44,7 @@
 <script>
 import {
   merge
-} from "loadsh";
+} from "lodash";
 export default {
   name: 'QkList',
   props: {

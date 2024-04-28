@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { merge } from 'loadsh'
+import { merge } from 'lodash'
 import { dateFormat } from '@/utils'
 import Picker from 'element-ui/packages/date-picker/src/picker.vue'
 

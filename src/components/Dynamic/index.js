@@ -1,6 +1,6 @@
 import { setValueByPath, getValueByPath, getObjType } from '@/utils'
 import { valueEquals } from 'element-ui/src/utils/util'
-import { merge, isEmpty } from 'loadsh'
+import { merge, isEmpty } from 'lodash'
 
 export default {
   name: 'QkDynamic',

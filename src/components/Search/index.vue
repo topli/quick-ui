@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { isNumber } from 'loadsh'
+import { isNumber } from 'lodash'
 export default {
   name: 'QkSearch',
   props: {

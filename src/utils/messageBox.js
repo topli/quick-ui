@@ -1,4 +1,4 @@
-import { merge } from 'loadsh'
+import { merge } from 'lodash'
 import { MessageBox } from 'element-ui'
 
 // ----------------- 确认框 ---------------
