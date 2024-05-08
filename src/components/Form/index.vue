@@ -102,15 +102,16 @@ export default {
 <style lang="scss">
 .qk-dialog-form-wrapper {
   position: relative;
+  height: 100%;
   .el-scrollbar {
+    height: calc(100% - 65px);
     .el-scrollbar__wrap {
       overflow-x: hidden;
       margin-bottom: 0!important;
-      max-height: 60vh;
     }
   }
   .qk-dialog-form-body {
-    padding: 20px 30px;
+    padding: 10px 20px;
     .el-form {
       display: grid;
       grid-column-gap: 20px;

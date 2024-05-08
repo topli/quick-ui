@@ -1,6 +1,9 @@
 import Vue from 'vue'
-import Main from './index.vue'
-const Dialog = Vue.extend(Main)
+import DialogVue from './Dialog.vue'
+import DrawerVue from './Drawer.vue'
+const Dialog = Vue.extend(DialogVue)
+
+const Drawer = Vue.extend(DrawerVue)
 
 let instance
 const instances = []
@@ -16,10 +19,17 @@ const DialogBox = function (options) {
   if (options.width && typeof options.width === 'number' && !isNaN(options.width)) {
     options.width = options.width + 'px'
   }
-  instance = new Dialog({
-    data: options,
-    parent: this.$root
-  })
+  if (options.type && options.type === 'drawer') {
+    instance = new Drawer({
+      data: options,
+      parent: this.$root
+    })
+  } else {
+    instance = new Dialog({
+      data: options,
+      parent: this.$root
+    })
+  }
   instance.vm = instance.$mount()
   instance.id = id
   instance.close = () => {

@@ -68,7 +68,7 @@ export default {
           // formFieldGroup('test', 'Test', [{value: 1, label: '有效1'}, {value: 2, label: '无效2'}], 'CheckboxGroup'),
         ],
         btns: [
-          // { text: '新增', icon: 'add', click: this.addData },
+          { text: '新增', icon: 'add', click: this.addData },
           // { text: '新增', click: this.addData }
         ],
       },
@@ -497,6 +497,7 @@ export default {
       this.$qkDialog({
         title: '新增',
         components: Add,
+        type: 'drawer',
         width: 690,
         onAction: this.onAction
       })

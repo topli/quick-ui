@@ -1,13 +1,14 @@
 <template>
-  <el-dialog
+  <el-drawer
     :close-on-click-modal="closeOnClickModal"
     :title="title"
     :visible.sync="visible"
-    :width="width"
+    :size="width"
     :custom-class="customClass"
+    :direction="direction"
     @close="onCloseDialog">
-    <div id="dialog-box"/>
-  </el-dialog>
+    <div id="drawer-box"/>
+  </el-drawer>
 </template>
 
 <script>
@@ -20,7 +21,8 @@ export default {
       width: '50%',
       doms: null,
       class: '',
-      closeOnClickModal: false
+      closeOnClickModal: false,
+      direction: 'rtl'
     }
   },
   provide() {
@@ -30,7 +32,7 @@ export default {
   },
   computed: {
     customClass() {
-      return 'qk-dialog ' + this.class
+      return ['qk-drawer', this.class].filter(v => !!v).join(' ')
     }
   },
   created() {},
@@ -43,7 +45,7 @@ export default {
       // 挂载内容
       const Components = Vue.extend(this.components)
       this.doms = new Components({
-        el: document.getElementById('dialog-box'),
+        el: document.getElementById('drawer-box'),
         propsData: this.props,
         data: { onAction: this.onAction, onClose: this.onCloseDialog },
         parent: this

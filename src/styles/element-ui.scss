@@ -150,7 +150,21 @@ $inputW: 220px;
   }
   .el-dialog__body {
     padding: 0;
-    // padding: 20px;
+    height: 65vh;
+  }
+}
+
+.qk-drawer {
+  border-radius: 4px;
+  .el-drawer__header {
+    position: relative;
+    margin: 0!important;
+    padding: 10px 20px 10px;
+    border-bottom: 1px solid #E7EAEA;
+  }
+  .el-drawer__body {
+    padding: 0;
+    height: 100%;
   }
 }
 
