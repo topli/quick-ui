@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-    :close-on-click-modal="closeOnClickModal"
+    :wrapper-closable="wrapperClosable"
     :title="title"
     :visible.sync="visible"
     :size="width"
@@ -21,7 +21,7 @@ export default {
       width: '50%',
       doms: null,
       class: '',
-      closeOnClickModal: false,
+      wrapperClosable: false,
       direction: 'rtl'
     }
   },
