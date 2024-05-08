@@ -135,7 +135,7 @@ export default {
     },
     handlerProps(props) {
       return merge({
-        index: true,
+        index: false,
         selection: false,
       },
         props || {}
