@@ -6,12 +6,7 @@
 
 <script>
   export default {
-    props: {
-      value: {
-        type: Object,
-        default: () => {}
-      }
-    },
+    props: ['value'],
     inject: ['qkDialog'],
     data() {
       return {}
@@ -23,6 +18,15 @@
       test() {
         this.qkDialog.close()
         console.log(1111111112222222233333);
+      }
+    },
+    watch: {
+      value: {
+        handler: function (val) {
+          console.log(val);
+        },
+        immediate: true,
+        deep: true
       }
     }
   }

@@ -7,6 +7,7 @@ import { cloneDeep } from 'lodash'
 import { notNull, userName, lengthRange, identityCard, phone, email, maxLength } from '@/utils/validate'
 import { formField, formFieldGroup, formTitle } from "@/utils"
 import { orgType, sex } from '@/libs/options'
+import CustomTest from './customTest.vue'
 
 const full = {
   span: 'full'
@@ -49,33 +50,33 @@ export default {
       },
       fields: [
         formTitle('基础数据'),
-        formField('userName', '用户名'),
-        formField('name', '姓名'),
-        formField('mobile', '手机号'),
-        formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
-        formFieldGroup('org.type', '机构类型', orgType),
-        formField('qq', 'qq'),
-        formField('email', '电子邮箱'),
-        formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full),
-        formField('userName', '用户名'),
-        formField('name', '姓名'),
-        formField('mobile', '手机号'),
-        formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
-        formFieldGroup('org.type', '机构类型', orgType),
-        formField('qq', 'qq'),
-        formField('email', '电子邮箱'),
-        formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full),
-        formField('userName', '用户名'),
-        formField('name', '姓名'),
-        formField('mobile', '手机号'),
-        formField('identityCard', '身份证'),
-        formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
-        formFieldGroup('org.type', '机构类型', orgType),
-        formField('qq', 'qq'),
-        formField('email', '电子邮箱'),
-        formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full)
+        formField('userName', '用户名').setTag(CustomTest),
+        // formField('name', '姓名'),
+        // formField('mobile', '手机号'),
+        // formField('identityCard', '身份证'),
+        // formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
+        // formFieldGroup('org.type', '机构类型', orgType),
+        // formField('qq', 'qq'),
+        // formField('email', '电子邮箱'),
+        // formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full),
+        // formField('userName', '用户名'),
+        // formField('name', '姓名'),
+        // formField('mobile', '手机号'),
+        // formField('identityCard', '身份证'),
+        // formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
+        // formFieldGroup('org.type', '机构类型', orgType),
+        // formField('qq', 'qq'),
+        // formField('email', '电子邮箱'),
+        // formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full),
+        // formField('userName', '用户名'),
+        // formField('name', '姓名'),
+        // formField('mobile', '手机号'),
+        // formField('identityCard', '身份证'),
+        // formFieldGroup('sex', '性别').setTag('RadioGroup').setChildrens(sex),
+        // formFieldGroup('org.type', '机构类型', orgType),
+        // formField('qq', 'qq'),
+        // formField('email', '电子邮箱'),
+        // formField('address', '联系地址').setProps({ type: 'textarea' }).setFIP(full)
       ],
       btns: [
         { text: '取消', click: () => this.onClose() },
