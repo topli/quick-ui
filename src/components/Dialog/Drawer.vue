@@ -37,6 +37,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.visible = true
     this.$nextTick(() => {
       if (!this.components) {
         console.error('components are not in parameters')
@@ -50,7 +51,6 @@ export default {
         data: { onAction: this.onAction, onClose: this.onCloseDialog },
         parent: this
       })
-      this.visible = true
     })
   },
   beforeDestroy() {
