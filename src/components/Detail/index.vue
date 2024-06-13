@@ -12,7 +12,7 @@
               :render-content="col.render"
               :scope="{row: data}"
               :prop="col.key"/>
-            <DetailTooltip v-else :content="getText(col)" :filter="col.filter" />
+            <DetailTooltip v-else :content="getText(col)" :filter="col.filter" :emptyText="emptyText || col.emptyText" />
           </div>
         </div>
       </div>
@@ -58,6 +58,10 @@
       labelWidth: {
         type: [String, Number],
         default: 100
+      },
+      emptyText: {
+        type: String,
+        default: '--'
       }
     },
     data() {
@@ -126,17 +130,20 @@
       },
       getText(col) {
         const key = col.key
-        const item = this.colMap.get(key)
         let val = this.data[key]
+        if (col.filter) {
+          return val
+        }
+        const item = this.colMap.get(key)
         if (item.options) {
           const find = item.options.find(item => item.value === val)
           val = find ? find.label : ''
         }
         if (val === null || val === undefined) {
-          val = '--'
+          val = this.emptyText
         } else {
           if (typeof val === 'string') {
-            val = val || '--'
+            val = val || this.emptyText
           } else if (typeof val === 'number') {
             val = val || '0'
           }

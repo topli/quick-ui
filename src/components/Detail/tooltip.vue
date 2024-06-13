@@ -17,7 +17,7 @@
 export default {
   props: {
     content: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     filter: {
@@ -48,6 +48,7 @@ export default {
       }
     }, // 过滤器
     handleComputed() {
+      if (!this.content) return '--'
       return this.$options.filters[this.filter](Number(this.content)) || '--'
     }
   }

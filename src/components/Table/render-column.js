@@ -4,7 +4,7 @@ export default {
     renderContent: Function,
     scope: Object,
     prop: String,
-    options: Array
+    options: Array,
   },
   data() {
     return {}

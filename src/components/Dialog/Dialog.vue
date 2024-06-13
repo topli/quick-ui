@@ -15,7 +15,7 @@ import Vue from 'vue'
 export default {
   data() {
     return {
-      visible: true,
+      visible: false,
       title: '',
       width: '50%',
       doms: null,
@@ -48,6 +48,7 @@ export default {
         data: { onAction: this.onAction, onClose: this.onCloseDialog },
         parent: this
       })
+      this.visible = true
     })
   },
   beforeDestroy() {

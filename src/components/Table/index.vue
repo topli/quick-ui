@@ -11,7 +11,8 @@
         <!-- <el-table-column v-if="index" :label="indexLabel" type="index" align="center" class-name="table-index" width="70" /> -->
       </template>
       <template v-for="col in columns">
-        <el-table-column v-if="!!col" v-bind="col" :prop="col.key" :column-key="col.key">
+        <el-table-column v-if="!!col" v-bind="col" :prop="col.key" :column-key="col.key"
+          :show-overflow-tooltip="showOverflowTooltip(col)">
           <template slot-scope="scope">
             <render-column v-if="col.render || col.options" :render-content="col.render" :scope="scope" :prop="col.key"
               :options="col.options" />
@@ -139,6 +140,9 @@ export default {
           }
         }
       }
+    },
+    showOverflowTooltip(col) {
+      return !(col.hideTooltip || col.key === 'buttons')
     }
   }
 }
