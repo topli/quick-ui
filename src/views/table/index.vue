@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <el-button @click="toggleLang">切换</el-button>
+  <div style="height: 100%;width: 100%;">
     <QkList ref="qkList" :loading="loading" :search="search" :table="table" :page="page" @on-search="onSearch" />
   </div>
 </template>

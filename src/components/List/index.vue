@@ -10,8 +10,8 @@
         </template>
       </el-form>
       <template slot="btns">
-        <el-button v-for="btn in listSearch.btns" :key="btn.icon || btn.text" :disabled="btn.disabled" @click="btn.click"
-          :type="btn.type || 'primary'">
+        <el-button v-for="btn in listSearch.btns" :key="btn.icon || btn.text" :disabled="btn.disabled"
+          @click="btn.click" :type="btn.type || 'primary'">
           <el-tooltip :disabled="!btn.icon" :content="btn.text" placement="top">
             <div class="qk-search-btn">
               <i v-if="btn.icon" :class="`${iconfont} icon-${btn.icon}`"></i>
@@ -21,17 +21,9 @@
         </el-button>
       </template>
     </QkSearch>
-    <QkTable
-      ref="qkTable"
-      class="qk-table"
-      :height="tableHeight"
-      :loading="loading"
-      :data="table.data"
-      :columns="table.columns"
-      :empty-text="table.emptyText"
-      :selectable="table.selectable"
-      :default-selections="table.defaultSeletions"
-      v-bind="handlerProps(table.props)" v-on="handlerOn(table.on)" />
+    <QkTable ref="qkTable" class="qk-table" :height="tableHeight" :loading="loading" :data="table.data"
+      :columns="table.columns" :empty-text="table.emptyText" :selectable="table.selectable"
+      :default-selections="table.defaultSeletions" v-bind="handlerProps(table.props)" v-on="handlerOn(table.on)" />
     <div v-if="page" class="qk-pagination">
       <el-pagination :current-page="listPage.num" :page-sizes="listPage.pageSize || [10, 20, 50]"
         :page-size="listPage.size" :total="listPage.totalElement"
@@ -146,7 +138,7 @@ export default {
     },
     setTableHeight() {
       const that = this
-      const table = document.getElementsByClassName('qk-table')[0]
+      const table = this.$el.querySelector('.qk-table')
       function onResize(e) {
         that.tableHeight = e[0].target.clientHeight
       }
